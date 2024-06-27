@@ -1,18 +1,38 @@
 import 'package:flutter/material.dart';
-import 'package:menu_app/pages/home_page.dart';
+import 'package:menu_app/models/cart.dart';
+import 'package:menu_app/pages/base_page.dart';
+import 'package:provider/provider.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
   @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {  
+
+  @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: HomePage(), 
+
+    final textTheme = Theme.of(context).textTheme;
+
+    return ChangeNotifierProvider(
+      create: (context) => Cart(),
+      builder: (context, child) => MaterialApp(
+        theme: ThemeData(
+        textTheme: GoogleFonts.poppinsTextTheme(textTheme).copyWith(
+          bodyMedium: GoogleFonts.poppins(textStyle: textTheme.bodyMedium),
+        ),
+      ),
+        debugShowCheckedModeBanner: false,
+        home: BaseScreen(),
+      ),
     );
   }
 }

@@ -1,11 +1,27 @@
 import 'package:flutter/material.dart';
 
-class FilterTabview extends StatelessWidget {
-  const FilterTabview({super.key});
+class FilterTabView extends StatelessWidget {
+  const FilterTabView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return TabBar(
+    return Container(
+      height: 30,
+      margin: EdgeInsets.only(left: 25, top: 2, bottom: 2),
+      child: TabBar(
+        isScrollable: true,
+        dividerColor: Colors.transparent,
+        indicatorColor: Colors.transparent,
+        labelColor: Color.fromARGB(255, 5, 12, 112),
+        automaticIndicatorColorAdjustment: true,
+        padding: EdgeInsets.zero,
+        labelPadding: EdgeInsets.only(
+          right: 2,
+          left: 0,
+          top: 2,
+          bottom: 2,
+        ),
+        tabAlignment: TabAlignment.start,
         tabs: const [
           Tab(
             child: SizedBox(
@@ -79,6 +95,8 @@ class FilterTabview extends StatelessWidget {
               ),
             ),
           ),
-      ],);
+        ],
+      ),
+    );
   }
 }
