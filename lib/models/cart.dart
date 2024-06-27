@@ -25,4 +25,13 @@ class Cart extends ChangeNotifier {
     }
     notifyListeners();
   }
+
+  double getTotalPrice() {
+    double totalPrice = 0.0;
+    userCart.forEach((food, quantity) {
+      totalPrice += food.price * quantity;
+    });
+    return totalPrice;
+  }
+
 }

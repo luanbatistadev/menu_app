@@ -26,8 +26,8 @@ class _MyAppState extends State<MyApp> {
       create: (context) => Cart(),
       builder: (context, child) => MaterialApp(
         theme: ThemeData(
-        textTheme: GoogleFonts.poppinsTextTheme(textTheme).copyWith(
-          bodyMedium: GoogleFonts.poppins(textStyle: textTheme.bodyMedium),
+        textTheme: GoogleFonts.lexendTextTheme(textTheme).copyWith(
+          bodyMedium: GoogleFonts.lexend(textStyle: textTheme.bodyMedium),
         ),
       ),
         debugShowCheckedModeBanner: false,

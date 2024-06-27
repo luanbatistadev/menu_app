@@ -19,6 +19,7 @@ class _CartItemState extends State<CartItem> {
 
   @override
   Widget build(BuildContext context) {
+    final double priceAcumulator = widget.food.price * widget.quantity;
     return Padding(
       padding: const EdgeInsets.only(bottom: 5),
       child: ListTile(
@@ -31,7 +32,10 @@ class _CartItemState extends State<CartItem> {
           ),
         ),
         title: Text(widget.food.name),
-        subtitle: Text('${widget.quantity} x', style: TextStyle(fontWeight: FontWeight.w700),),
+        subtitle: Text(
+          '${widget.quantity} x',
+          style: TextStyle(fontWeight: FontWeight.w700),
+        ),
         // ignore: sized_box_for_whitespace
         trailing: Container(
           width: 100,
@@ -39,8 +43,10 @@ class _CartItemState extends State<CartItem> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text('R\$${widget.food.price.toStringAsFixed(2)}',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12),),
+              Text(
+                'R\$${priceAcumulator.toStringAsFixed(2)}',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
+              ),
               IconButton(
                 onPressed: () => removeFoodFromCart(widget.food),
                 icon: Icon(

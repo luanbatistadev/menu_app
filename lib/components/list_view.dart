@@ -54,6 +54,7 @@ class _ListViewCartState extends State<ListViewCart> {
       builder: (context, value, child) {
         final cartItems = value.getUserCart().entries.toList();
         return ListView.builder(
+          shrinkWrap: true,
           itemCount: cartItems.length,
           scrollDirection: Axis.vertical,
           itemBuilder: (context, index) {
