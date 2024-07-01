@@ -37,7 +37,7 @@ class AppBarHome extends StatelessWidget implements PreferredSizeWidget {
             child: TextButton(
               onPressed: () {},
               child: const Text(
-                "EN",
+                'EN',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 12,

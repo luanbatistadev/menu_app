@@ -40,7 +40,7 @@ class _CartPageState extends State<CartPage> {
                     Align(
                       alignment: Alignment.center,
                       child: Text(
-                        "Checkout",
+                        'Checkout',
                         style: TextStyle(
                           color: Color.fromARGB(255, 5, 12, 112),
                           fontWeight: FontWeight.bold,
@@ -361,7 +361,7 @@ class _CartPageState extends State<CartPage> {
                         child: TextButton(
                           onPressed: () {},
                           child: Text(
-                            "Checkout",
+                            'Checkout',
                             style: TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,

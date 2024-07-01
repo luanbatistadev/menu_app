@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:menu_app/models/foods.dart';
 
 class FoodsSimpleTile extends StatefulWidget {
-  const FoodsSimpleTile({super.key, required this.food});
+  const FoodsSimpleTile({
+    super.key,
+    required this.food,
+  });
   final Food food;
 
   @override
@@ -10,31 +13,20 @@ class FoodsSimpleTile extends StatefulWidget {
 }
 
 class _FoodsSimpleTileState extends State<FoodsSimpleTile> {
-  void addFoodToCart(Food food) {
-    //Provider
-  }
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(right: 5),
       height: 50,
       width: 300,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Expanded(
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(12),
-              child: Image.asset(
-                widget.food.path,
-                width: double.infinity,
-                height: double.infinity,
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
-        ],
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(12),
+        child: Image.asset(
+          widget.food.path,
+          width: double.infinity,
+          height: double.infinity,
+          fit: BoxFit.cover,
+        ),
       ),
     );
   }

@@ -1,10 +1,10 @@
-import "package:flutter/material.dart";
-import "package:menu_app/models/cart.dart";
-import "package:menu_app/models/filter_tabview.dart";
-import "package:menu_app/models/foods.dart";
-import "package:menu_app/components/foods_tile.dart";
-import "package:menu_app/components/list_view.dart";
-import "package:provider/provider.dart";
+import 'package:flutter/material.dart';
+import 'package:menu_app/components/foods_tile.dart';
+import 'package:menu_app/components/list_view.dart';
+import 'package:menu_app/models/cart.dart';
+import 'package:menu_app/models/filter_tabview.dart';
+import 'package:menu_app/models/foods.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -28,7 +28,11 @@ class _HomePageState extends State<HomePage> {
                 height: 40,
                 padding: const EdgeInsets.only(left: 12, right: 12),
                 margin: const EdgeInsets.only(
-                    left: 25, right: 25, top: 5, bottom: 0,),
+                  left: 25,
+                  right: 25,
+                  top: 5,
+                  bottom: 0,
+                ),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(8),
@@ -49,7 +53,7 @@ class _HomePageState extends State<HomePage> {
                 child: Row(
                   children: const [
                     Text(
-                      "Featured",
+                      'Featured',
                       style: TextStyle(
                         color: Color.fromARGB(255, 5, 12, 112),
                         fontWeight: FontWeight.bold,
@@ -59,18 +63,17 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
               ),
-              Container(
-                margin: EdgeInsets.only(left: 25),
+              SizedBox(
                 height: 120,
-                child: Expanded(
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: foodslist.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      Food food = foodslist[index];
-                      return FoodsSimpleTile(food: food);
-                    },
-                  ),
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: foodslist.length,
+                  padding: const EdgeInsets.symmetric(horizontal: 25),
+                  physics: BouncingScrollPhysics(parent: const AlwaysScrollableScrollPhysics()),
+                  itemBuilder: (BuildContext context, int index) {
+                    Food food = foodslist[index];
+                    return FoodsSimpleTile(food: food);
+                  },
                 ),
               ),
               FilterTabView(),

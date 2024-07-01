@@ -42,7 +42,7 @@ class _FilterButtonTileState extends State<FilterButtonTile> {
           child: Align(
             alignment: Alignment.center,
             child: Text(
-              "Food",
+              'Food',
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
           ),
@@ -52,7 +52,7 @@ class _FilterButtonTileState extends State<FilterButtonTile> {
           child: Align(
             alignment: Alignment.center,
             child: Text(
-              "Protein",
+              'Protein',
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
           ),
@@ -62,7 +62,7 @@ class _FilterButtonTileState extends State<FilterButtonTile> {
           child: Align(
             alignment: Alignment.center,
             child: Text(
-              "Swallow",
+              'Swallow',
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
           ),
@@ -72,7 +72,7 @@ class _FilterButtonTileState extends State<FilterButtonTile> {
           child: Align(
             alignment: Alignment.center,
             child: Text(
-              "Soups",
+              'Soups',
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
           ),
@@ -82,7 +82,7 @@ class _FilterButtonTileState extends State<FilterButtonTile> {
           child: Align(
             alignment: Alignment.center,
             child: Text(
-              "Drinks",
+              'Drinks',
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
           ),
@@ -92,7 +92,7 @@ class _FilterButtonTileState extends State<FilterButtonTile> {
           child: Align(
             alignment: Alignment.center,
             child: Text(
-              "Fried",
+              'Fried',
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
           ),
@@ -104,21 +104,21 @@ class _FilterButtonTileState extends State<FilterButtonTile> {
 
 List<FilterButton> filterList = [
   FilterButton(
-    name: "Food",
+    name: 'Food',
   ),
   FilterButton(
-    name: "Protein",
+    name: 'Protein',
   ),
   FilterButton(
-    name: "Swallow",
+    name: 'Swallow',
   ),
   FilterButton(
-    name: "Soups",
+    name: 'Soups',
   ),
   FilterButton(
-    name: "Drinks",
+    name: 'Drinks',
   ),
   FilterButton(
-    name: "Fried",
+    name: 'Fried',
   ),
 ];
