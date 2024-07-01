@@ -125,13 +125,16 @@ class FoodsFullTile extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Expanded(
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(12),
-                    child: Image.asset(
-                      food.path,
-                      width: double.infinity,
-                      height: 80,
-                      fit: BoxFit.cover,
+                  child: Hero(
+                    tag: 'foodcard',
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(12),
+                      child: Image.asset(
+                        food.path,
+                        width: double.infinity,
+                        height: 80,
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
                 ),

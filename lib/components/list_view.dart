@@ -19,7 +19,7 @@ class _ListViewChickenState extends State<ListViewChicken> {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text('Succesfully added"'),
+        title: Text('Succesfully added'),
         content: Text('Check your cart'),
       ),
     );

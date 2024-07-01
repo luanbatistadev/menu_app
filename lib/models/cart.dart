@@ -34,4 +34,7 @@ class Cart extends ChangeNotifier {
     return totalPrice;
   }
 
+  int getCartLength() {
+    return getUserCart().length;
+  }
 }

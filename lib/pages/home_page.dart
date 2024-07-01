@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:menu_app/components/app_bar.dart';
 import 'package:menu_app/components/foods_tile.dart';
 import 'package:menu_app/components/list_view.dart';
 import 'package:menu_app/models/cart.dart';
@@ -18,6 +19,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Consumer<Cart>(
       builder: (context, value, child) => Scaffold(
+        appBar: AppBarHome(),
         backgroundColor: Colors.white,
         body: DefaultTabController(
           length: 6,

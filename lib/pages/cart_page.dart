@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:menu_app/components/list_view.dart';
+import 'package:menu_app/main.dart';
 import 'package:menu_app/models/cart.dart';
 import 'package:provider/provider.dart';
 
@@ -30,7 +31,10 @@ class _CartPageState extends State<CartPage> {
                     Positioned(
                       left: 0,
                       child: IconButton(
-                        onPressed: () {},
+                        onPressed: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => MyApp(),),),
                         icon: const Icon(
                           Icons.arrow_back_outlined,
                           color: Colors.black87,
