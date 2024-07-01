@@ -35,6 +35,10 @@ class Cart extends ChangeNotifier {
   }
 
   int getCartLength() {
-    return getUserCart().length;
+    int totalItems = 0;
+    userCart.forEach((food, quantity) {
+      totalItems += quantity;
+    });
+    return totalItems;
   }
 }

@@ -29,9 +29,9 @@ class _MyAppBottomNavigationState extends State<MyAppBottomNavigation> {
             child: GNav(
               iconSize: 32,
               activeColor: Color.fromARGB(255, 5, 12, 112),
-              onTabChange: (index) => setState(() {
-                index == 0 ? index++ : index += 0;
+              onTabChange: (index) => setState(() {                
                 widget.onTabChange!(index);
+                index == 0 ? index++ : index += 0;
               }),
               selectedIndex: index,
               mainAxisAlignment: MainAxisAlignment.center,
