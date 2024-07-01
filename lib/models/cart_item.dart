@@ -26,30 +26,33 @@ class _CartItemState extends State<CartItem> {
         leading: ClipOval(
           child: Image.asset(
             widget.food.path,
-            width: 40,
-            height: 40,
+            width: 60,
+            height: 60,
             fit: BoxFit.cover,
           ),
         ),
-        title: Text(widget.food.name),
+        // ignore: sized_box_for_whitespace
+        title: Container(width:120 ,child: Text(widget.food.name, softWrap: true,)),
         subtitle: Text(
           '${widget.quantity} x',
           style: TextStyle(fontWeight: FontWeight.w700),
         ),
         // ignore: sized_box_for_whitespace
         trailing: Container(
-          width: 100,
+          width: 120,
           height: 60,
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.end,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
                 'R\$${priceAcumulator.toStringAsFixed(2)}',
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
               ),
               IconButton(
+                padding: EdgeInsets.all(1),
                 onPressed: () => removeFoodFromCart(widget.food),
-                icon: Icon(
+                icon: Icon(                  
                   Icons.delete_outline,
                   color: Colors.red[900],
                 ),
