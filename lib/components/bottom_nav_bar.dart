@@ -19,34 +19,26 @@ class _MyAppBottomNavigationState extends State<MyAppBottomNavigation> {
     return Consumer<Cart>(
       builder: (context, cart, child) => Stack(
         children: [
-          Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(20),
-                topRight: Radius.circular(20),
+          GNav(            
+            iconSize: 25,
+            activeColor: Color.fromARGB(255, 5, 12, 112),
+            onTabChange: (index) => setState(() {                
+              widget.onTabChange!(index);
+              index == 0 ? index++ : index += 0;
+            }),
+            selectedIndex: index,
+            mainAxisAlignment: MainAxisAlignment.center,
+            tabs: const [
+              GButton(
+                icon: Icons.home,
+                text: 'Home',
               ),
-            ),
-            child: GNav(
-              iconSize: 32,
-              activeColor: Color.fromARGB(255, 5, 12, 112),
-              onTabChange: (index) => setState(() {                
-                widget.onTabChange!(index);
-                index == 0 ? index++ : index += 0;
-              }),
-              selectedIndex: index,
-              mainAxisAlignment: MainAxisAlignment.center,
-              tabs: const [
-                GButton(
-                  icon: Icons.home,
-                  text: 'Home',
-                ),
-                GButton(
-                  icon: Icons.shopping_cart_outlined,
-                  iconActiveColor: Color.fromARGB(255, 5, 12, 112),
-                  text: 'Cart',
-                ),
-              ],
-            ),
+              GButton(
+                icon: Icons.shopping_cart_outlined,
+                iconActiveColor: Color.fromARGB(255, 5, 12, 112),
+                text: 'Cart',
+              ),
+            ],
           ),
           cart.getCartLength() > 0
               ? Positioned(
@@ -55,7 +47,7 @@ class _MyAppBottomNavigationState extends State<MyAppBottomNavigation> {
                   child: Text(
                     '${cart.getCartLength()}',
                     style: TextStyle(
-                      color: index == 0
+                      color: index != 0
                           ? Color.fromARGB(255, 5, 12, 112)
                           : Colors.grey[900],
                       fontSize: 12,

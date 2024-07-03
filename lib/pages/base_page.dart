@@ -16,7 +16,6 @@ class _BasePageState extends State<BasePage> {
   ];
 
   int _selectedIndex = 0;
-  int hasAppBar = 0;
 
   void navigateBottomBar(index) {
     setState(() {
@@ -27,7 +26,8 @@ class _BasePageState extends State<BasePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _pages[_selectedIndex],
+      body:_pages[_selectedIndex],
+      resizeToAvoidBottomInset: true,
       bottomNavigationBar: MyAppBottomNavigation(
         onTabChange: (index) => navigateBottomBar(index),
       ),

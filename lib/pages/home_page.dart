@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:menu_app/components/app_bar.dart';
-import 'package:menu_app/components/foods_tile.dart';
 import 'package:menu_app/components/list_view.dart';
 import 'package:menu_app/models/cart.dart';
 import 'package:menu_app/models/filter_tabview.dart';
-import 'package:menu_app/models/foods.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
@@ -19,16 +17,18 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Consumer<Cart>(
       builder: (context, value, child) => Scaffold(
-        appBar: AppBarHome(),
-        backgroundColor: Colors.white,
-        body: DefaultTabController(
-          length: 6,
-          initialIndex: 1,
-          child: Column(
-            children: [
-              Container(
+        body: CustomScrollView(
+          scrollDirection: Axis.vertical,
+          slivers: <Widget>[
+            SliverAppBar(
+              pinned: true,
+              title: AppBarHome(),
+              expandedHeight: 60.0,
+            ),
+            SliverToBoxAdapter(
+              child: Container(
                 height: 40,
-                padding: const EdgeInsets.only(left: 12, right: 12),
+                padding: const EdgeInsets.symmetric(horizontal: 12),
                 margin: const EdgeInsets.only(
                   left: 25,
                   right: 25,
@@ -46,16 +46,18 @@ class _HomePageState extends State<HomePage> {
                 child: Row(
                   children: const [
                     Icon(Icons.search),
-                    Text('Search'),
+                    Text('Pesquisa'),
                   ],
                 ),
               ),
-              Container(
-                margin: EdgeInsets.only(top: 10, bottom: 15, left: 25),
+            ),
+            SliverToBoxAdapter(
+              child: Container(
+                margin: const EdgeInsets.only(top: 10, bottom: 15, left: 25),
                 child: Row(
                   children: const [
                     Text(
-                      'Featured',
+                      'Conheça:',
                       style: TextStyle(
                         color: Color.fromARGB(255, 5, 12, 112),
                         fontWeight: FontWeight.bold,
@@ -65,34 +67,40 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
               ),
-              SizedBox(
+            ),
+            SliverToBoxAdapter(
+              child: SizedBox(
                 height: 120,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: foodslist.length,
-                  padding: const EdgeInsets.symmetric(horizontal: 25),
-                  physics: BouncingScrollPhysics(parent: const AlwaysScrollableScrollPhysics()),
-                  itemBuilder: (BuildContext context, int index) {
-                    Food food = foodslist[index];
-                    return FoodsSimpleTile(food: food);
-                  },
-                ),
+                width: double.infinity,
+                child: CarroselFoodListView(),
               ),
-              FilterTabView(),
-              Expanded(
-                child: TabBarView(
+            ),
+            SliverFillRemaining(
+              child: DefaultTabController(
+                length: 6,
+                initialIndex: 1,
+                child: Column(
                   children: const [
-                    ListViewChicken(),
-                    ListViewChicken(),
-                    ListViewChicken(),
-                    ListViewChicken(),
-                    ListViewChicken(),
-                    ListViewChicken(),
+                    FilterTabView(),
+                    Flexible(
+                      fit: FlexFit.loose,
+                      child: TabBarView(
+                        children: [
+                          ListViewChicken(),
+                          ListViewChicken(),
+                          ListViewChicken(),
+                          ListViewChicken(),
+                          ListViewChicken(),
+                          ListViewChicken(),
+                        ],
+                      ),
+                    ),
                   ],
                 ),
               ),
-            ],
-          ),
+            ),
+
+          ],
         ),
       ),
     );

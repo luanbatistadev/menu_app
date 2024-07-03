@@ -70,10 +70,7 @@ class _CartPageState extends State<CartPage> {
                         ),
                       ),
                     ),
-                    Flexible(
-                      fit: FlexFit.loose,
-                      child: ListViewCart(),
-                    ),
+                    ListViewCart(),
                     SizedBox(
                       height: 20,
                     ),

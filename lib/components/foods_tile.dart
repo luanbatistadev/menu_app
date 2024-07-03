@@ -23,8 +23,6 @@ class _FoodsSimpleTileState extends State<FoodsSimpleTile> {
         borderRadius: BorderRadius.circular(12),
         child: Image.asset(
           widget.food.path,
-          width: double.infinity,
-          height: double.infinity,
           fit: BoxFit.cover,
         ),
       ),
@@ -120,25 +118,47 @@ class FoodsFullTile extends StatelessWidget {
             ),
           ),
           Expanded(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
+            child: Stack(
+              alignment: Alignment.center,
               children: [
-                Expanded(
-                  child: Hero(
-                    tag: 'foodcard',
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(12),
-                      child: Image.asset(
-                        food.path,
-                        width: double.infinity,
-                        height: 80,
-                        fit: BoxFit.cover,
+                Hero(
+                  tag: 'food ${food.name}',
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(12),
+                    child: Image.asset(
+                      food.path,
+                      fit: BoxFit.cover,
+                      width: double.infinity,
+                      height: double.infinity,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  right: 0,
+                  bottom: 0,
+                  child: GestureDetector(
+                    onTap: onTap,
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: Color.fromARGB(
+                            255,
+                            5,
+                            12,
+                            112,
+                          ),
+                          borderRadius: BorderRadius.circular(6),),
+                      child: Padding(
+                        padding: EdgeInsets.all(6),
+                        child: Icon(
+                          Icons.add,
+                          size: 30,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
                   ),
                 ),
-                TextButton(
+                /* TextButton(
                   style: TextButton.styleFrom(
                     fixedSize: Size(120, 2),
                     padding: EdgeInsets.zero,
@@ -151,10 +171,10 @@ class FoodsFullTile extends StatelessWidget {
                   ),
                   onPressed: onTap,
                   child: Text(
-                    'Add to cart',
+                    'Adicionar ao carrinho',
                     style: TextStyle(color: Colors.white),
                   ),
-                ),
+                ), */
               ],
             ),
           ),
