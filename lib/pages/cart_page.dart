@@ -55,9 +55,11 @@ class _CartPageState extends State<CartPage> {
                   ],
                 ),
               ),
-              Expanded(
+              Flexible(
+                fit: FlexFit.loose,
                 child: ListView(
                   physics: ScrollPhysics(parent: PageScrollPhysics()),
+                  scrollDirection: Axis.vertical,
                   children: [
                     Container(
                       alignment: Alignment.centerLeft,

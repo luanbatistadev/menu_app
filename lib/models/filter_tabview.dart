@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class FilterTabView extends StatelessWidget {
-  const FilterTabView({super.key});
+  final TabController tabController;
+  const FilterTabView({super.key, required this.tabController});
 
   @override
   Widget build(BuildContext context) {
@@ -9,6 +10,7 @@ class FilterTabView extends StatelessWidget {
       height: 30,
       margin: EdgeInsets.only(left: 25, top: 2, bottom: 2),
       child: TabBar(
+        controller: tabController,
         isScrollable: true,
         dividerColor: Colors.transparent,
         indicatorColor: Colors.transparent,

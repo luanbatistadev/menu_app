@@ -22,13 +22,12 @@ class _ListViewChickenState extends State<ListViewChicken> {
         title: Text('Succesfully added'),
         content: Text('Check your cart'),
       ),
-    
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder( 
+    return ListView.builder(
       physics: const NeverScrollableScrollPhysics(),
       itemCount: foodslist.length,
       shrinkWrap: true,
@@ -79,17 +78,17 @@ class CarroselFoodListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: foodslist.length,
-                shrinkWrap: true,
-                padding: const EdgeInsets.symmetric(horizontal: 25),
-                physics: const BouncingScrollPhysics(
-                  parent: AlwaysScrollableScrollPhysics(),
-                ),
-                itemBuilder: (BuildContext context, int index) {
-                  Food food = foodslist[index];
-                  return FoodsSimpleTile(food: food);
-                },
-              );
+      scrollDirection: Axis.horizontal,
+      itemCount: foodslist.length,
+      shrinkWrap: true,
+      padding: const EdgeInsets.symmetric(horizontal: 25),
+      physics: const BouncingScrollPhysics(
+        parent: AlwaysScrollableScrollPhysics(),
+      ),
+      itemBuilder: (BuildContext context, int index) {
+        Food food = foodslist[index];
+        return FoodsSimpleTile(food: food);
+      },
+    );
   }
 }

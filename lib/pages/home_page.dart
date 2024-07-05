@@ -12,13 +12,29 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePage>
+    with SingleTickerProviderStateMixin {
+  late TabController _tabController;
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(vsync: this, length: 6);
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Consumer<Cart>(
-      builder: (context, value, child) => Scaffold(
-        body: CustomScrollView(
+      builder: (context, value, child) => SafeArea(
+        child: CustomScrollView(
           scrollDirection: Axis.vertical,
+          primary: true,
           slivers: <Widget>[
             SliverAppBar(
               pinned: true,
@@ -75,17 +91,21 @@ class _HomePageState extends State<HomePage> {
                 child: CarroselFoodListView(),
               ),
             ),
-            SliverFillRemaining(
-              child: DefaultTabController(
-                length: 6,
-                initialIndex: 1,
+            SliverToBoxAdapter(
+              child: FilterTabView(
+                tabController: _tabController,
+              ),
+            ),
+            SliverToBoxAdapter(
+              child: SizedBox(
+                height: 1600,
                 child: Column(
-                  children: const [
-                    FilterTabView(),
+                  children: [
                     Flexible(
                       fit: FlexFit.loose,
                       child: TabBarView(
-                        children: [
+                        controller: _tabController,
+                        children: const [
                           ListViewChicken(),
                           ListViewChicken(),
                           ListViewChicken(),
@@ -99,10 +119,91 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             ),
-
           ],
         ),
       ),
     );
+  }
+}
+
+class ScrollPage extends StatefulWidget {
+  const ScrollPage({super.key});
+
+  @override
+  State<ScrollPage> createState() => _ScrollPageState();
+}
+
+class _ScrollPageState extends State<ScrollPage> with SingleTickerProviderStateMixin {
+  late TabController _tabController;
+  
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(vsync: this, length: 6);
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Scaffold(
+        body: Container(
+          margin: EdgeInsets.symmetric(horizontal: 25),
+          child: NestedScrollView(
+            headerSliverBuilder: (context, innerBoxIsScrolled) {
+              return [
+                SliverPersistentHeader(
+                  delegate: CustomSliverDelegate(
+                    expandedHeight: 150,
+                  ),
+                  pinned: true,
+                ),
+              ];
+            },
+            body: Text('SASDONSOINA'),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class CustomSliverDelegate extends SliverPersistentHeaderDelegate {
+  final double expandedHeight;
+
+  CustomSliverDelegate({required this.expandedHeight});
+
+  @override
+  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
+    return Column(
+          children: [
+            AppBarHome(),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextField(
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'Search',
+                ),
+              ),
+            ),
+          ],
+    );
+  }
+
+  @override
+  double get minExtent => 100;
+
+  @override
+  double get maxExtent => expandedHeight;
+
+  @override
+  bool shouldRebuild(SliverPersistentHeaderDelegate oldDelegate) {
+    return true;
   }
 }

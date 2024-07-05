@@ -19,10 +19,10 @@ class _MyAppBottomNavigationState extends State<MyAppBottomNavigation> {
     return Consumer<Cart>(
       builder: (context, cart, child) => Stack(
         children: [
-          GNav(            
+          GNav(
             iconSize: 25,
             activeColor: Color.fromARGB(255, 5, 12, 112),
-            onTabChange: (index) => setState(() {                
+            onTabChange: (index) => setState(() {
               widget.onTabChange!(index);
               index == 0 ? index++ : index += 0;
             }),
