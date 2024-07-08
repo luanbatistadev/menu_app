@@ -13,18 +13,20 @@ class MyAppBottomNavigation extends StatefulWidget {
 }
 
 class _MyAppBottomNavigationState extends State<MyAppBottomNavigation> {
+  int index = 0;
   @override
   Widget build(BuildContext context) {
-    int index = 0;
     return Consumer<Cart>(
       builder: (context, cart, child) => Stack(
         children: [
           GNav(
             iconSize: 25,
             activeColor: Color.fromARGB(255, 5, 12, 112),
-            onTabChange: (index) => setState(() {
-              widget.onTabChange!(index);
-              index == 0 ? index++ : index += 0;
+            onTabChange: (newIndex) => setState(() {
+              index = newIndex;
+              if (widget.onTabChange != null) {
+                widget.onTabChange!(newIndex);
+              }
             }),
             selectedIndex: index,
             mainAxisAlignment: MainAxisAlignment.center,
@@ -47,7 +49,7 @@ class _MyAppBottomNavigationState extends State<MyAppBottomNavigation> {
                   child: Text(
                     '${cart.getCartLength()}',
                     style: TextStyle(
-                      color: index != 0
+                      color: index > 0
                           ? Color.fromARGB(255, 5, 12, 112)
                           : Colors.grey[900],
                       fontSize: 12,

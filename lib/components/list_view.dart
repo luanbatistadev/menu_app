@@ -56,8 +56,7 @@ class _ListViewCartState extends State<ListViewCart> {
       builder: (context, value, child) {
         final cartItems = value.getUserCart().entries.toList();
         return ListView.builder(
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
+          physics: const BouncingScrollPhysics(),
           itemCount: cartItems.length,
           scrollDirection: Axis.vertical,
           itemBuilder: (context, index) {
@@ -80,7 +79,6 @@ class CarroselFoodListView extends StatelessWidget {
     return ListView.builder(
       scrollDirection: Axis.horizontal,
       itemCount: foodslist.length,
-      shrinkWrap: true,
       padding: const EdgeInsets.symmetric(horizontal: 25),
       physics: const BouncingScrollPhysics(
         parent: AlwaysScrollableScrollPhysics(),

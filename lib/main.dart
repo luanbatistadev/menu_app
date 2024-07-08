@@ -26,6 +26,7 @@ class _MyAppState extends State<MyApp> {
       create: (context) => Cart(),
       builder: (context, child) => MaterialApp(
         theme: ThemeData(
+        scaffoldBackgroundColor: Colors.white,
         textTheme: GoogleFonts.lexendTextTheme(textTheme).copyWith(
           bodyMedium: GoogleFonts.lexend(textStyle: textTheme.bodyMedium),
         ),
