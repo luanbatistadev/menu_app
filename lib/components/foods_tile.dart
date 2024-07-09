@@ -158,23 +158,6 @@ class FoodsFullTile extends StatelessWidget {
                     ),
                   ),
                 ),
-                /* TextButton(
-                  style: TextButton.styleFrom(
-                    fixedSize: Size(120, 2),
-                    padding: EdgeInsets.zero,
-                    alignment: Alignment.center,
-                    foregroundColor: Color.fromARGB(255, 5, 12, 112),
-                    backgroundColor: Color.fromARGB(255, 5, 12, 112),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                  ),
-                  onPressed: onTap,
-                  child: Text(
-                    'Adicionar ao carrinho',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ), */
               ],
             ),
           ),

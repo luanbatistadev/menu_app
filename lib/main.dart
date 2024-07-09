@@ -5,17 +5,17 @@ import 'package:provider/provider.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(RBMenuApp());
 }
 
-class MyApp extends StatefulWidget {
-  const MyApp({super.key});
+class RBMenuApp extends StatefulWidget {
+  const RBMenuApp({super.key});
 
   @override
-  State<MyApp> createState() => _MyAppState();
+  State<RBMenuApp> createState() => _RBMenuAppState();
 }
 
-class _MyAppState extends State<MyApp> {  
+class _RBMenuAppState extends State<RBMenuApp> {  
 
   @override
   Widget build(BuildContext context) {  

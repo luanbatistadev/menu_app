@@ -31,14 +31,17 @@ class _CartItemState extends State<CartItem> {
             fit: BoxFit.cover,
           ),
         ),
-        // ignore: sized_box_for_whitespace
-        title: Container(width:120 ,child: Text(widget.food.name, softWrap: true,)),
+        title: SizedBox(
+            width: 120,
+            child: Text(
+              widget.food.name,
+              softWrap: true,
+            ),),
         subtitle: Text(
           '${widget.quantity} x',
           style: TextStyle(fontWeight: FontWeight.w700),
         ),
-        // ignore: sized_box_for_whitespace
-        trailing: Container(
+        trailing: SizedBox(
           width: 120,
           height: 60,
           child: Row(
@@ -52,7 +55,7 @@ class _CartItemState extends State<CartItem> {
               IconButton(
                 padding: EdgeInsets.all(1),
                 onPressed: () => removeFoodFromCart(widget.food),
-                icon: Icon(                  
+                icon: Icon(
                   Icons.delete_outline,
                   color: Colors.red[900],
                 ),

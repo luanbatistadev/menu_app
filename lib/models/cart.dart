@@ -27,18 +27,11 @@ class Cart extends ChangeNotifier {
   }
 
   double getTotalPrice() {
-    double totalPrice = 0.0;
-    userCart.forEach((food, quantity) {
-      totalPrice += food.price * quantity;
-    });
-    return totalPrice;
+    return userCart.entries
+        .fold(0.0, (total, entry) => total + entry.key.price * entry.value);
   }
 
   int getCartLength() {
-    int totalItems = 0;
-    userCart.forEach((food, quantity) {
-      totalItems += quantity;
-    });
-    return totalItems;
+    return userCart.values.fold(0, (total, quantity) => total + quantity);
   }
 }

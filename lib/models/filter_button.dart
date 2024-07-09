@@ -2,55 +2,47 @@ import 'package:flutter/material.dart';
 
 class FilterButton {
   final String name;
-  /*final bool isSelected;*/
-  FilterButton({required this.name /*required this.isSelected*/});
+  FilterButton({required this.name});
 }
 
-class FilterButtonTile extends StatefulWidget {
-  const FilterButtonTile({super.key});
+class FilterButtonTile extends StatelessWidget {
+  final ValueNotifier<int> isSelectedNotifier;
 
-  @override
-  State<FilterButtonTile> createState() => _FilterButtonTileState();
-}
+  const FilterButtonTile({super.key, required this.isSelectedNotifier});
 
-class _FilterButtonTileState extends State<FilterButtonTile> {
-  List<bool> isSelected = [true, false, false, false, false, false];
   @override
   Widget build(BuildContext context) {
-    return ToggleButtons(
-      borderColor: Colors.transparent,
-      selectedBorderColor: Colors.transparent,
-      borderRadius: BorderRadius.circular(8),
-      fillColor: Colors.transparent,
-      selectedColor: Color.fromARGB(255, 5, 12, 112),
-      borderWidth: 2,
-      onPressed: (int newIndex) {
-        setState(() {
-          for (int index = 0; index < isSelected.length; index++) {
-            if (index == newIndex) {
-              isSelected[index] = true;
-            } else {
-              isSelected[index] = false;
-            }
-          }
-        });
+    return ValueListenableBuilder<int>(
+      valueListenable: isSelectedNotifier,
+      builder: (context, isSelected, _) {
+        return ToggleButtons(
+          borderColor: Colors.transparent,
+          selectedBorderColor: Colors.transparent,
+          borderRadius: BorderRadius.circular(8),
+          fillColor: Colors.transparent,
+          selectedColor: Color.fromARGB(255, 5, 12, 112),
+          borderWidth: 2,
+          onPressed: (int newIndex) {
+            isSelectedNotifier.value = newIndex;
+          },
+          isSelected: List.generate(filterList.length, (index) => index == isSelected),
+          children: filterList.map(
+            (e) {
+              final title = e.name;
+              return SizedBox(
+                width: 80,
+                child: Align(
+                  alignment: Alignment.center,
+                  child: Text(
+                    title,
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  ),
+                ),
+              );
+            },
+          ).toList(),
+        );
       },
-      isSelected: isSelected,
-      children: filterList.map(
-        (e) {
-          final title = e.name;
-          return SizedBox(
-            width: 80,
-            child: Align(
-              alignment: Alignment.center,
-              child: Text(
-                title,
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-              ),
-            ),
-          );
-        },
-      ).toList(),
     );
   }
 }
