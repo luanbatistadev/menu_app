@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:menu_app/components/list_view.dart';
 import 'package:menu_app/models/cart.dart';
@@ -106,7 +105,7 @@ class _CartPageState extends State<CartPage> {
                     ),
                   ],
                 ),
-              ),
+              ),/* 
               SliverToBoxAdapter(
                 child: Column(
                   children: [
@@ -345,7 +344,7 @@ class _CartPageState extends State<CartPage> {
                   ],
                 ),
               ),
-            ],
+             */],
           ),
         ),
       ),

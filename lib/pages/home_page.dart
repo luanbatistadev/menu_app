@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:menu_app/components/app_bar.dart';
+import 'package:menu_app/components/carousel_slider_home.dart';
 import 'package:menu_app/components/list_view.dart';
 import 'package:menu_app/components/search_bar.dart';
 import 'package:menu_app/models/filter_tabview.dart';
@@ -75,7 +76,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                   SizedBox(
                     height: 120,
                     width: double.infinity,
-                    child: CarroselFoodListView(),
+                    child: CarroselFoodListView1(),
                   ),
                 ],
               ),
