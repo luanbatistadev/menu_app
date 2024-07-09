@@ -10,8 +10,8 @@ class HomePage extends StatefulWidget {
   @override
   State<HomePage> createState() => _HomePageState();
 }
-class _HomePageState extends State<HomePage>
-    with SingleTickerProviderStateMixin {
+
+class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
   @override
@@ -29,8 +29,8 @@ class _HomePageState extends State<HomePage>
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: CustomScrollView(
-        slivers: <Widget>[
+      child: NestedScrollView(
+        headerSliverBuilder: (context, innerBoxIsScrolled) => [
           SliverAppBar(
             expandedHeight: 300,
             pinned: true,
@@ -46,12 +46,17 @@ class _HomePageState extends State<HomePage>
             ),
             bottom: PreferredSize(
               preferredSize: Size.fromHeight(30),
-              child: Container( decoration: BoxDecoration(color: Colors.white) ,child: FilterTabView(tabController: _tabController)),
+              child: Container(
+                decoration: BoxDecoration(color: Colors.white),
+                child: FilterTabView(tabController: _tabController),
+              ),
             ),
             flexibleSpace: FlexibleSpaceBar(
               background: Column(
                 children: const [
-                  SizedBox(height: 90,),
+                  SizedBox(
+                    height: 90,
+                  ),
                   Padding(
                     padding: EdgeInsets.only(top: 10, bottom: 15, left: 25),
                     child: Row(
@@ -76,26 +81,14 @@ class _HomePageState extends State<HomePage>
               ),
             ),
           ),
-          SliverToBoxAdapter(
-            child: SizedBox(
-              height: 1400,
-              child: Flexible(
-                fit: FlexFit.loose,
-                child: TabBarView(
-                  controller: _tabController,
-                  children: const [
-                    ListViewChicken(),
-                    ListViewChicken(),
-                    ListViewChicken(),
-                    ListViewChicken(),
-                    ListViewChicken(),
-                    ListViewChicken(),
-                  ],
-                ),
-              ),
-            ),
-          ),
         ],
+        body: TabBarView(
+          controller: _tabController,
+          children: List.generate(
+            6,
+            (index) => ListViewChicken(),
+          ),
+        ),
       ),
     );
   }

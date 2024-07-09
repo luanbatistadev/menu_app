@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:menu_app/components/foods_tile.dart';
 import 'package:menu_app/models/cart.dart';
 import 'package:menu_app/models/cart_item.dart';
 import 'package:menu_app/models/foods.dart';
-import 'package:menu_app/components/foods_tile.dart';
 import 'package:provider/provider.dart';
 
 class ListViewChicken extends StatefulWidget {
@@ -16,28 +16,32 @@ class _ListViewChickenState extends State<ListViewChicken> {
   void addFoodToCart(Food food) {
     Provider.of<Cart>(context, listen: false).addItemToCart(food);
 
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: Text('Succesfully added'),
-        content: Text('Check your cart'),
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text('Added to cart'),
+        duration: Duration(seconds: 1),
       ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      physics: const NeverScrollableScrollPhysics(),
-      itemCount: foodslist.length,
-      shrinkWrap: true,
-      itemBuilder: (BuildContext context, int index) {
-        Food food = foodslist[index];
-        return FoodsFullTile(
-          food: food,
-          onTap: () => addFoodToCart(food),
-        );
-      },
+    return Scrollbar(
+      child: CustomScrollView(
+        physics: BouncingScrollPhysics(),
+        slivers: [
+          SliverList.builder(
+            itemCount: foodslist.length,
+            itemBuilder: (BuildContext context, int index) {
+              Food food = foodslist[index];
+              return FoodsFullTile(
+                food: food,
+                onTap: () => addFoodToCart(food),
+              );
+            },
+          ),
+        ],
+      ),
     );
   }
 }

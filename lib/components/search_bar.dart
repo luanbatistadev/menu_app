@@ -5,28 +5,31 @@ class SearchBarComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 40,
-      padding: const EdgeInsets.symmetric(horizontal: 12),
-      margin: const EdgeInsets.only(
-        left: 25,
-        right: 25,
-        top: 5,
-        bottom: 0,
-      ),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(8),
-        border: Border.all(
-          color: Colors.black,
-          width: 1,
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 4),
+      child: TextField(
+        decoration: InputDecoration(
+          hintText: 'Pesquisa',
+          border: InputBorder.none,
+          prefixIcon: Icon(Icons.search),
+          contentPadding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+          disabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.grey),
+            borderRadius: BorderRadius.circular(8),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.grey),
+            borderRadius: BorderRadius.circular(8),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.grey),
+            borderRadius: BorderRadius.circular(8),
+          ),
+          errorBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.grey),
+            borderRadius: BorderRadius.circular(8),
+          ),
         ),
-      ),
-      child: Row(
-        children: const [
-          Icon(Icons.search),
-          Text('Pesquisa'),
-        ],
       ),
     );
   }
