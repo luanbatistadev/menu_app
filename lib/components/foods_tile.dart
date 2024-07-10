@@ -140,13 +140,14 @@ class FoodsFullTile extends StatelessWidget {
                     onTap: onTap,
                     child: Container(
                       decoration: BoxDecoration(
-                          color: Color.fromARGB(
-                            255,
-                            5,
-                            12,
-                            112,
-                          ),
-                          borderRadius: BorderRadius.circular(6),),
+                        color: Color.fromARGB(
+                          255,
+                          5,
+                          12,
+                          112,
+                        ),
+                        borderRadius: BorderRadius.circular(6),
+                      ),
                       child: Padding(
                         padding: EdgeInsets.all(6),
                         child: Icon(
@@ -159,6 +160,89 @@ class FoodsFullTile extends StatelessWidget {
                   ),
                 ),
               ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class FoodsTileGrid extends StatelessWidget {
+  const FoodsTileGrid({super.key, required this.food, required this.onTap});
+  final Food food;
+  final void Function()? onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(8),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5),
+            spreadRadius: 5,
+            blurRadius: 7,
+            offset: Offset(0, 3),
+          ),
+        ],
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          SizedBox(
+            height: 90,
+            width: double.infinity,
+            child: ClipRRect(
+              child: Image.asset(
+                food.path,
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 80,
+            child: Column(
+              children: [
+                Text(
+                  food.name,
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 14,
+                  ),
+                ),
+                Text(
+                  food.description,
+                  softWrap: true,
+                  style: TextStyle(
+                    fontWeight: FontWeight.normal,
+                    fontSize: 12,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          GestureDetector(
+            onTap: onTap,
+            child: Container(
+              width: double.infinity,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(6),
+                color: Color.fromARGB(
+                  255,
+                  5,
+                  12,
+                  112,
+                ),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(4.0),
+                child: Text(
+                  'Adicionar ao carrinho',
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
             ),
           ),
         ],

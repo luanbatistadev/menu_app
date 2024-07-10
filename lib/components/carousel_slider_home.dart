@@ -1,27 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:menu_app/components/foods_tile.dart';
 import 'package:menu_app/models/foods.dart';
-
-/* class CarroselFoodListView1 extends StatelessWidget {
-  const CarroselFoodListView1({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return ListView.builder(
-      scrollDirection: Axis.horizontal,
-      itemCount: foodslist.length,
-      padding: const EdgeInsets.symmetric(horizontal: 25),
-      physics: const BouncingScrollPhysics(
-        parent: AlwaysScrollableScrollPhysics(),
-      ),
-      itemBuilder: (BuildContext context, int index) {
-        Food food = foodslist[index];
-        return FoodsSimpleTile(food: food);
-      },
-    );
-  }
-} */
 
 class CarroselFoodListView1 extends StatelessWidget {
   const CarroselFoodListView1({super.key});

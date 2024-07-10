@@ -8,6 +8,8 @@ class FilterTabView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 30,
+      width: double.infinity,
+      color: Colors.white,
       margin: EdgeInsets.only(left: 25, top: 2, bottom: 2),
       child: TabBar(
         controller: tabController,
@@ -23,7 +25,7 @@ class FilterTabView extends StatelessWidget {
           top: 2,
           bottom: 2,
         ),
-        tabAlignment: TabAlignment.start,
+        tabAlignment: TabAlignment.center,
         tabs: const [
           Tab(
             child: SizedBox(

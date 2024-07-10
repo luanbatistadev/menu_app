@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:menu_app/components/app_bar.dart';
 import 'package:menu_app/components/carousel_slider_home.dart';
+import 'package:menu_app/components/grid_view.dart';
 import 'package:menu_app/components/list_view.dart';
 import 'package:menu_app/components/search_bar.dart';
 import 'package:menu_app/models/filter_tabview.dart';
@@ -12,7 +13,8 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin {
+class _HomePageState extends State<HomePage>
+    with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
   @override
@@ -29,6 +31,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
 
   @override
   Widget build(BuildContext context) {
+    var screenSize = MediaQuery.sizeOf(context).width;
     return SafeArea(
       child: NestedScrollView(
         headerSliverBuilder: (context, innerBoxIsScrolled) => [
@@ -83,13 +86,21 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
             ),
           ),
         ],
-        body: TabBarView(
-          controller: _tabController,
-          children: List.generate(
-            6,
-            (index) => ListViewChicken(),
-          ),
-        ),
+        body: screenSize < 400
+            ? TabBarView(
+                controller: _tabController,
+                children: List.generate(
+                  6,
+                  (index) => ListViewChicken(),
+                ),
+              )
+            : TabBarView(
+                controller: _tabController,
+                children: List.generate(
+                  6,
+                  (index) =>  GridViewChicken(),
+                ),
+              ),
       ),
     );
   }
