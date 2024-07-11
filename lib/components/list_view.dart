@@ -6,7 +6,8 @@ import 'package:menu_app/models/foods.dart';
 import 'package:provider/provider.dart';
 
 class ListViewChicken extends StatefulWidget {
-  const ListViewChicken({super.key});
+  final String filter;
+  const ListViewChicken({super.key, required this.filter});
 
   @override
   State<ListViewChicken> createState() => _ListViewChickenState();
@@ -26,23 +27,36 @@ class _ListViewChickenState extends State<ListViewChicken> {
 
   @override
   Widget build(BuildContext context) {
-    return Scrollbar(
-      child: CustomScrollView(
-        physics: BouncingScrollPhysics(),
-        slivers: [
-          SliverList.builder(
-            itemCount: foodslist.length,
-            itemBuilder: (BuildContext context, int index) {
-              Food food = foodslist[index];
-              return FoodsFullTile(
-                food: food,
-                onTap: () => addFoodToCart(food),
-              );
-            },
-          ),
-        ],
-      ),
-    );
+    final filteredItems = foodslist
+        .where(
+          (item) =>
+              item.name.toLowerCase().contains(widget.filter.toLowerCase()),
+        )
+        .toList();
+    return filteredItems.isEmpty
+        ? Center(
+            child: Text(
+              'No items match your filter.',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+          )
+        : Scrollbar(
+            child: CustomScrollView(
+              physics: BouncingScrollPhysics(),
+              slivers: [
+                SliverList.builder(
+                  itemCount: filteredItems.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    Food food = filteredItems[index];
+                    return FoodsFullTile(
+                      food: food,
+                      onTap: () => addFoodToCart(food),
+                    );
+                  },
+                ),
+              ],
+            ),
+          );
   }
 }
 

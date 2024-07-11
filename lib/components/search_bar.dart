@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class SearchBarComponent extends StatelessWidget {
-  const SearchBarComponent({super.key});
+  final ValueNotifier<String> filterNotifier;
+  const SearchBarComponent({super.key, required this.filterNotifier});
 
   @override
   Widget build(BuildContext context) {
@@ -10,6 +11,9 @@ class SearchBarComponent extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 4),
         child: TextField(
+          onChanged: (valueInput) {
+            filterNotifier.value = valueInput;
+          },
           decoration: InputDecoration(
             hintText: 'Pesquisa',
             border: InputBorder.none,

@@ -201,18 +201,18 @@ class FoodsTileGrid extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(
-            height: 80,
-            child: Column(
-              children: [
-                Text(
-                  food.name,
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 14,
-                  ),
+          Column(
+            children: [
+              Text(
+                food.name,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 14,
                 ),
-                Text(
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                child: Text(
                   food.description,
                   softWrap: true,
                   style: TextStyle(
@@ -220,7 +220,15 @@ class FoodsTileGrid extends StatelessWidget {
                     fontSize: 12,
                   ),
                 ),
-              ],
+              ),
+            ],
+          ),
+          Text(
+            'R\$ ${food.price.toStringAsFixed(2)}',
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 16,
+              color: Colors.black,
             ),
           ),
           GestureDetector(
@@ -241,6 +249,8 @@ class FoodsTileGrid extends StatelessWidget {
                 child: Text(
                   'Adicionar ao carrinho',
                   style: TextStyle(color: Colors.white),
+                  textAlign: TextAlign.center,
+                  softWrap: true,
                 ),
               ),
             ),

@@ -5,7 +5,8 @@ import 'package:menu_app/models/foods.dart';
 import 'package:provider/provider.dart';
 
 class GridViewChicken extends StatefulWidget {
-  const GridViewChicken({super.key});
+  final String filter;
+  const GridViewChicken({super.key, required this.filter});
 
   @override
   State<GridViewChicken> createState() => _GridViewChickenState();
@@ -25,30 +26,44 @@ class _GridViewChickenState extends State<GridViewChicken> {
 
   @override
   Widget build(BuildContext context) {
+    final filteredItems = foodslist
+        .where(
+          (item) =>
+              item.name.toLowerCase().contains(widget.filter.toLowerCase()),
+        )
+        .toList();
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 25),
-      child: Scrollbar(
-        child: CustomScrollView(
-          physics: BouncingScrollPhysics(),
-          slivers: [
-            SliverGrid.builder(
-              gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                maxCrossAxisExtent: 200,
-                mainAxisExtent: 200,
-                crossAxisSpacing: 25,
-                mainAxisSpacing: 10,
+      child: filteredItems.isEmpty
+          ? Center(
+              child: Text(
+                'No items match your filter.',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
-              itemBuilder: (BuildContext context, int index) {
-                Food food = foodslist[index];
-                return FoodsTileGrid(
-                  food: food,
-                  onTap: () => addFoodToCart(food),
-                );
-              },
+            )
+          : Scrollbar(
+              child: CustomScrollView(
+                physics: BouncingScrollPhysics(),
+                slivers: [
+                  SliverGrid.builder(
+                    gridDelegate:
+                        const SliverGridDelegateWithMaxCrossAxisExtent(
+                      maxCrossAxisExtent: 200,
+                      mainAxisExtent: 250,
+                      crossAxisSpacing: 25,
+                      mainAxisSpacing: 10,
+                    ),
+                    itemBuilder: (BuildContext context, int index) {
+                      Food food = foodslist[index];
+                      return FoodsTileGrid(
+                        food: food,
+                        onTap: () => addFoodToCart(food),
+                      );
+                    },
+                  ),
+                ],
+              ),
             ),
-          ],
-        ),
-      ),
     );
   }
 }

@@ -16,6 +16,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
+  final ValueNotifier<String> filterNotifier = ValueNotifier<String>('');
 
   @override
   void initState() {
@@ -26,6 +27,7 @@ class _HomePageState extends State<HomePage>
   @override
   void dispose() {
     _tabController.dispose();
+    filterNotifier.dispose();
     super.dispose();
   }
 
@@ -45,7 +47,9 @@ class _HomePageState extends State<HomePage>
             leading: Column(
               children: [
                 AppBarHome(),
-                SearchBarComponent(),
+                SearchBarComponent(
+                  filterNotifier: filterNotifier,
+                ),
               ],
             ),
             bottom: PreferredSize(
@@ -86,20 +90,35 @@ class _HomePageState extends State<HomePage>
             ),
           ),
         ],
-        body: screenSize < 400
-            ? TabBarView(
-                controller: _tabController,
-                children: List.generate(
-                  6,
-                  (index) => ListViewChicken(),
-                ),
+        body:        
+        screenSize < 400
+            ? ValueListenableBuilder<String>(
+                valueListenable: filterNotifier,
+                builder: (context, filter, child) {
+                  return TabBarView(
+                    controller: _tabController,
+                    children: List.generate(
+                      6,
+                      (index) => ListViewChicken(
+                        filter: filter,
+                      ),
+                    ),
+                  );
+                },
               )
-            : TabBarView(
-                controller: _tabController,
-                children: List.generate(
-                  6,
-                  (index) =>  GridViewChicken(),
-                ),
+            :  ValueListenableBuilder<String>(
+                valueListenable: filterNotifier,
+                builder: (context, filter, child) {
+                  return TabBarView(
+                    controller: _tabController,
+                    children: List.generate(
+                      6,
+                      (index) => GridViewChicken(
+                        filter: filter,
+                      ),
+                    ),
+                  );
+                },
               ),
       ),
     );
