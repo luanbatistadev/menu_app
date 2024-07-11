@@ -236,7 +236,7 @@ class FoodsTileGrid extends StatelessWidget {
             child: Container(
               width: double.infinity,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(6),
+                borderRadius: BorderRadius.vertical(bottom: Radius.circular(6)),
                 color: Color.fromARGB(
                   255,
                   5,

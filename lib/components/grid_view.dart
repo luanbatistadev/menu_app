@@ -46,6 +46,7 @@ class _GridViewChickenState extends State<GridViewChicken> {
                 physics: BouncingScrollPhysics(),
                 slivers: [
                   SliverGrid.builder(
+                    itemCount: filteredItems.length,
                     gridDelegate:
                         const SliverGridDelegateWithMaxCrossAxisExtent(
                       maxCrossAxisExtent: 200,
@@ -54,7 +55,7 @@ class _GridViewChickenState extends State<GridViewChicken> {
                       mainAxisSpacing: 10,
                     ),
                     itemBuilder: (BuildContext context, int index) {
-                      Food food = foodslist[index];
+                      Food food = filteredItems[index];
                       return FoodsTileGrid(
                         food: food,
                         onTap: () => addFoodToCart(food),
