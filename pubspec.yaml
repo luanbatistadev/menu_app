@@ -39,6 +39,7 @@ dependencies:
   provider:
   google_fonts: ^6.2.1
   carousel_slider: ^4.2.1
+  lottie: ^3.1.2
 
 dev_dependencies:
   flutter_test:

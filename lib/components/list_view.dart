@@ -6,8 +6,8 @@ import 'package:menu_app/models/foods.dart';
 import 'package:provider/provider.dart';
 
 class ListViewChicken extends StatefulWidget {
-  final String filter;
   const ListViewChicken({super.key, required this.filter});
+  final String filter;
 
   @override
   State<ListViewChicken> createState() => _ListViewChickenState();
@@ -29,33 +29,30 @@ class _ListViewChickenState extends State<ListViewChicken> {
   Widget build(BuildContext context) {
     final filteredItems = foodslist
         .where(
-          (item) =>
-              item.name.toLowerCase().contains(widget.filter.toLowerCase()),
+          (item) => item.name.toLowerCase().contains(widget.filter.toLowerCase()),
         )
         .toList();
     return filteredItems.isEmpty
         ? Center(
             child: Text(
-              'No items match your filter.',
+              'Nenhum produto encontrado vida 😔',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
           )
-        : Scrollbar(
-            child: CustomScrollView(
-              physics: BouncingScrollPhysics(),
-              slivers: [
-                SliverList.builder(
-                  itemCount: filteredItems.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    Food food = filteredItems[index];
-                    return FoodsFullTile(
-                      food: food,
-                      onTap: () => addFoodToCart(food),
-                    );
-                  },
-                ),
-              ],
-            ),
+        : CustomScrollView(
+            physics: BouncingScrollPhysics(),
+            slivers: [
+              SliverList.builder(
+                itemCount: filteredItems.length,
+                itemBuilder: (BuildContext context, int index) {
+                  Food food = filteredItems[index];
+                  return FoodsFullTile(
+                    food: food,
+                    onTap: () => addFoodToCart(food),
+                  );
+                },
+              ),
+            ],
           );
   }
 }
@@ -73,15 +70,17 @@ class _ListViewCartState extends State<ListViewCart> {
     return Consumer<Cart>(
       builder: (context, value, child) {
         final cartItems = value.getUserCart().entries.toList();
-        return ListView.builder(
-          physics: const BouncingScrollPhysics(),
+        return SliverList.builder(
           itemCount: cartItems.length,
-          scrollDirection: Axis.vertical,
           itemBuilder: (context, index) {
             final entry = cartItems[index];
             Food food = entry.key;
             int quantity = entry.value;
-            return CartItem(food: food, quantity: quantity);
+            return CartItem(
+              food: food,
+              quantity: quantity,
+              removeItemFromCart: value.removeItemFromCart,
+            );
           },
         );
       },

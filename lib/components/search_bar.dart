@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
 class SearchBarComponent extends StatelessWidget {
-  final ValueNotifier<String> filterNotifier;
   const SearchBarComponent({super.key, required this.filterNotifier});
+  final ValueNotifier<String> filterNotifier;
 
   @override
   Widget build(BuildContext context) {
     return ColoredBox(
-      color: Colors.white,
+      color: Theme.of(context).scaffoldBackgroundColor,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 4),
         child: TextField(

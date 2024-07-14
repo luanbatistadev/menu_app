@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:menu_app/components/bottom_nav_bar.dart';
+import 'package:menu_app/main.dart';
 import 'package:menu_app/pages/cart_page.dart';
 import 'package:menu_app/pages/home_page.dart';
 
@@ -9,28 +10,35 @@ class BasePage extends StatefulWidget {
   State createState() => _BasePageState();
 }
 
-class _BasePageState extends State<BasePage> {
-  final List<Widget> _pages = [
-    HomePage(),
-    CartPage(),
-  ];
-
-  int _selectedIndex = 0;
-
-  void navigateBottomBar(index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
+class _BasePageState extends State<BasePage> with SingleTickerProviderStateMixin {
+  late TabController _controller;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body:_pages[_selectedIndex],
-      resizeToAvoidBottomInset: true,
-      bottomNavigationBar: MyAppBottomNavigation(
-        onTabChange: (index) => navigateBottomBar(index),
+    return ThemeWidget(
+      child: Scaffold(
+        body: TabBarView(
+          controller: _controller,
+          physics: NeverScrollableScrollPhysics(),
+          children: const [
+            HomePage(),
+            CartPage(),
+          ],
+        ),
+        bottomNavigationBar: MyAppBottomNavigation(
+          onTabChange: (index) => navigateBottomBar(index),
+        ),
       ),
     );
+  }
+
+  void navigateBottomBar(index) {
+    _controller.animateTo(index);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = TabController(length: 2, vsync: this);
   }
 }

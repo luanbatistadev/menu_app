@@ -26,6 +26,10 @@ class Cart extends ChangeNotifier {
     notifyListeners();
   }
 
+  bool hasItemInCart(Food food) {
+    return userCart.containsKey(food);
+  }
+
   double getTotalPrice() {
     return userCart.entries
         .fold(0.0, (total, entry) => total + entry.key.price * entry.value);

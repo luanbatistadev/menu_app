@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:menu_app/models/cart.dart';
 import 'package:provider/provider.dart';
 
 class MyAppBottomNavigation extends StatefulWidget {
-  final void Function(int)? onTabChange;
-
   const MyAppBottomNavigation({super.key, required this.onTabChange});
+  final void Function(int)? onTabChange;
 
   @override
   State<MyAppBottomNavigation> createState() => _MyAppBottomNavigationState();
@@ -17,50 +15,55 @@ class _MyAppBottomNavigationState extends State<MyAppBottomNavigation> {
   @override
   Widget build(BuildContext context) {
     return Consumer<Cart>(
-      builder: (context, cart, child) => Stack(
-        children: [
-          GNav(
-            iconSize: 25,
-            activeColor: Color.fromARGB(255, 5, 12, 112),
-            onTabChange: (newIndex) => setState(() {
-              index = newIndex;
-              if (widget.onTabChange != null) {
-                widget.onTabChange!(newIndex);
-              }
-            }),
-            selectedIndex: index,
-            mainAxisAlignment: MainAxisAlignment.center,
-            tabs: const [
-              GButton(
-                icon: Icons.home,
-                text: 'Home',
-              ),
-              GButton(
-                icon: Icons.shopping_cart_outlined,
-                iconActiveColor: Color.fromARGB(255, 5, 12, 112),
-                text: 'Cart',
-              ),
-            ],
-          ),
-          cart.getCartLength() > 0
-              ? Positioned(
-                  bottom: 25,
-                  right: 110,
-                  child: Text(
-                    '${cart.getCartLength()}',
-                    style: TextStyle(
-                      color: index > 0
-                          ? Color.fromARGB(255, 5, 12, 112)
-                          : Colors.grey[900],
-                      fontSize: 12,
-                      fontWeight: FontWeight.bold,
+      builder: (context, cart, child) => BottomNavigationBar(
+        onTap: (value) {
+          setState(() {
+            index = value;
+          });
+          widget.onTabChange!(value);
+        },
+        currentIndex: index,
+        iconSize: 32,
+        items: [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Início'),
+          BottomNavigationBarItem(
+            icon: Stack(
+              children: [
+                AnimatedPadding(
+                  duration: Duration(milliseconds: 300),
+                  padding: cart.getCartLength() == 0
+                      ? EdgeInsets.zero
+                      : EdgeInsets.only(top: 12, right: 12),
+                  child: Icon(Icons.shopping_cart),
+                ),
+                Positioned(
+                  top: 0,
+                  right: 0,
+                  child: AnimatedScale(
+                    scale: cart.getCartLength() == 0 ? 0 : 1,
+                    duration: Duration(milliseconds: 300),
+                    curve: Curves.easeInOut,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Color.fromARGB(255, 5, 12, 112),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      padding: EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                      child: Text(
+                        '${cart.getCartLength()}',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 10,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                     ),
                   ),
-                )
-              : SizedBox(
-                  height: 0,
-                  width: 0,
                 ),
+              ],
+            ),
+            label: 'Carrinho',
+          ),
         ],
       ),
     );

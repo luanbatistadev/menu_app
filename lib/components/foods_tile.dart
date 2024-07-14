@@ -40,7 +40,7 @@ class FoodsFullTile extends StatelessWidget {
       margin: EdgeInsets.only(right: 25, left: 25, bottom: 10, top: 10),
       height: 120,
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Theme.of(context).colorScheme.primaryContainer,
         borderRadius: BorderRadius.circular(8),
         boxShadow: [
           BoxShadow(
@@ -70,10 +70,7 @@ class FoodsFullTile extends StatelessWidget {
                     ),
                     child: Text(
                       food.name,
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 14,
-                      ),
+                      style: Theme.of(context).textTheme.bodyMedium,
                     ),
                   ),
                 ),
@@ -89,10 +86,7 @@ class FoodsFullTile extends StatelessWidget {
                     child: Text(
                       food.description,
                       softWrap: true,
-                      style: TextStyle(
-                        fontWeight: FontWeight.normal,
-                        fontSize: 12,
-                      ),
+                      style: Theme.of(context).textTheme.bodySmall,
                     ),
                   ),
                 ),
@@ -106,11 +100,7 @@ class FoodsFullTile extends StatelessWidget {
                     ),
                     child: Text(
                       'R\$ ${food.price.toStringAsFixed(2)}',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
-                        color: Colors.black,
-                      ),
+                      style: Theme.of(context).textTheme.bodyLarge,
                     ),
                   ),
                 ),
@@ -177,17 +167,18 @@ class FoodsTileGrid extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Theme.of(context).colorScheme.primaryContainer,
         borderRadius: BorderRadius.circular(8),
         boxShadow: [
           BoxShadow(
             color: Colors.grey.withOpacity(0.5),
-            spreadRadius: 5,
-            blurRadius: 7,
-            offset: Offset(0, 3),
+            spreadRadius: 4,
+            blurRadius: 4,
+            offset: Offset(0, 5),
           ),
         ],
       ),
+      margin: EdgeInsets.symmetric(horizontal: 8),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -205,31 +196,21 @@ class FoodsTileGrid extends StatelessWidget {
             children: [
               Text(
                 food.name,
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 14,
-                ),
+                style: Theme.of(context).textTheme.bodyMedium,
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
                 child: Text(
                   food.description,
                   softWrap: true,
-                  style: TextStyle(
-                    fontWeight: FontWeight.normal,
-                    fontSize: 12,
-                  ),
+                  style: Theme.of(context).textTheme.bodySmall,
                 ),
               ),
             ],
           ),
           Text(
             'R\$ ${food.price.toStringAsFixed(2)}',
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 16,
-              color: Colors.black,
-            ),
+            style: Theme.of(context).textTheme.bodyLarge,
           ),
           GestureDetector(
             onTap: onTap,
@@ -237,18 +218,13 @@ class FoodsTileGrid extends StatelessWidget {
               width: double.infinity,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.vertical(bottom: Radius.circular(6)),
-                color: Color.fromARGB(
-                  255,
-                  5,
-                  12,
-                  112,
-                ),
+                color: Theme.of(context).colorScheme.primary,
               ),
               child: Padding(
                 padding: const EdgeInsets.all(4.0),
                 child: Text(
                   'Adicionar ao carrinho',
-                  style: TextStyle(color: Colors.white),
+                  style: Theme.of(context).textTheme.labelSmall,
                   textAlign: TextAlign.center,
                   softWrap: true,
                 ),

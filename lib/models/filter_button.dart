@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 
 class FilterButton {
-  final String name;
   FilterButton({required this.name});
+  final String name;
 }
 
 class FilterButtonTile extends StatelessWidget {
-  final ValueNotifier<int> isSelectedNotifier;
-
   const FilterButtonTile({super.key, required this.isSelectedNotifier});
+  final ValueNotifier<int> isSelectedNotifier;
 
   @override
   Widget build(BuildContext context) {

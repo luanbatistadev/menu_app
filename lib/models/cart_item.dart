@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:menu_app/models/cart.dart';
 import 'package:menu_app/models/foods.dart';
-import 'package:provider/provider.dart';
 
 class CartItem extends StatefulWidget {
+  const CartItem({
+    super.key,
+    required this.food,
+    required this.quantity,
+    required this.removeItemFromCart,
+  });
   final Food food;
   final int quantity;
-  const CartItem({super.key, required this.food, required this.quantity});
+  final void Function(Food) removeItemFromCart;
 
   @override
   State<CartItem> createState() => _CartItemState();
 }
 
 class _CartItemState extends State<CartItem> {
-  void removeFoodFromCart(Food food) {
-    Provider.of<Cart>(context, listen: false).removeItemFromCart(widget.food);
-  }
-
   @override
   Widget build(BuildContext context) {
     final double priceAcumulator = widget.food.price * widget.quantity;
@@ -32,14 +32,16 @@ class _CartItemState extends State<CartItem> {
           ),
         ),
         title: SizedBox(
-            width: 120,
-            child: Text(
-              widget.food.name,
-              softWrap: true,
-            ),),
+          width: 120,
+          child: Text(
+            widget.food.name,
+            softWrap: true,
+            style: Theme.of(context).textTheme.bodyMedium,
+          ),
+        ),
         subtitle: Text(
           '${widget.quantity} x',
-          style: TextStyle(fontWeight: FontWeight.w700),
+          style: Theme.of(context).textTheme.bodySmall,
         ),
         trailing: SizedBox(
           width: 120,
@@ -50,11 +52,13 @@ class _CartItemState extends State<CartItem> {
             children: [
               Text(
                 'R\$${priceAcumulator.toStringAsFixed(2)}',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
+                style: Theme.of(context).textTheme.bodySmall,
               ),
               IconButton(
                 padding: EdgeInsets.all(1),
-                onPressed: () => removeFoodFromCart(widget.food),
+                onPressed: () {
+                  widget.removeItemFromCart(widget.food);
+                },
                 icon: Icon(
                   Icons.delete_outline,
                   color: Colors.red[900],

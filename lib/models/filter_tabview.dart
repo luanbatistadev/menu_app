@@ -1,24 +1,22 @@
 import 'package:flutter/material.dart';
 
 class FilterTabView extends StatelessWidget {
-  final TabController tabController;
   const FilterTabView({super.key, required this.tabController});
+  final TabController tabController;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 30,
       width: double.infinity,
-      color: Colors.white,
-      margin: EdgeInsets.only(left: 25, top: 2, bottom: 2),
+      color: Theme.of(context).scaffoldBackgroundColor,
       child: TabBar(
         controller: tabController,
         isScrollable: true,
         dividerColor: Colors.transparent,
         indicatorColor: Colors.transparent,
-        labelColor: Color.fromARGB(255, 5, 12, 112),
         automaticIndicatorColorAdjustment: true,
-        padding: EdgeInsets.zero,
+        padding: EdgeInsets.symmetric(horizontal: 20),
         labelPadding: EdgeInsets.only(
           right: 2,
           left: 0,

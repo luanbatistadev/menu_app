@@ -1,15 +1,14 @@
 class Food {
-  final double price;
-  final String name;
-  final String path;
-  final String description;
-
   Food({
     required this.price,
     required this.name,
     required this.path,
     required this.description,
   });
+  final double price;
+  final String name;
+  final String path;
+  final String description;
 }
 
 List<Food> foodslist = [

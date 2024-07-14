@@ -13,8 +13,7 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage>
-    with SingleTickerProviderStateMixin {
+class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin {
   late TabController _tabController;
   final ValueNotifier<String> filterNotifier = ValueNotifier<String>('');
 
@@ -40,9 +39,9 @@ class _HomePageState extends State<HomePage>
           SliverAppBar(
             expandedHeight: 300,
             pinned: true,
-            toolbarHeight: 90,
+            toolbarHeight: 94,
             surfaceTintColor: Colors.white,
-            backgroundColor: Colors.white,
+            backgroundColor: Theme.of(context).scaffoldBackgroundColor,
             leadingWidth: double.infinity,
             leading: Column(
               children: [
@@ -54,14 +53,11 @@ class _HomePageState extends State<HomePage>
             ),
             bottom: PreferredSize(
               preferredSize: Size.fromHeight(30),
-              child: Container(
-                decoration: BoxDecoration(color: Colors.white),
-                child: FilterTabView(tabController: _tabController),
-              ),
+              child: FilterTabView(tabController: _tabController),
             ),
             flexibleSpace: FlexibleSpaceBar(
               background: Column(
-                children: const [
+                children: [
                   SizedBox(
                     height: 90,
                   ),
@@ -71,11 +67,7 @@ class _HomePageState extends State<HomePage>
                       children: [
                         Text(
                           'Conheça:',
-                          style: TextStyle(
-                            color: Color.fromARGB(255, 5, 12, 112),
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20,
-                          ),
+                          style: Theme.of(context).textTheme.titleLarge,
                         ),
                       ],
                     ),
@@ -90,36 +82,27 @@ class _HomePageState extends State<HomePage>
             ),
           ),
         ],
-        body:        
-        screenSize < 400
-            ? ValueListenableBuilder<String>(
-                valueListenable: filterNotifier,
-                builder: (context, filter, child) {
-                  return TabBarView(
-                    controller: _tabController,
-                    children: List.generate(
-                      6,
-                      (index) => ListViewChicken(
-                        filter: filter,
-                      ),
-                    ),
+        body: ValueListenableBuilder(
+          valueListenable: filterNotifier,
+          builder: (context, filter, child) => TabBarView(
+            controller: _tabController,
+            clipBehavior: Clip.hardEdge,
+            children: List.generate(
+              6,
+              (index) {
+                if (screenSize < 480) {
+                  return ListViewChicken(
+                    filter: filter,
                   );
-                },
-              )
-            :  ValueListenableBuilder<String>(
-                valueListenable: filterNotifier,
-                builder: (context, filter, child) {
-                  return TabBarView(
-                    controller: _tabController,
-                    children: List.generate(
-                      6,
-                      (index) => GridViewChicken(
-                        filter: filter,
-                      ),
-                    ),
+                } else {
+                  return GridViewChicken(
+                    filter: filter,
                   );
-                },
-              ),
+                }
+              },
+            ),
+          ),
+        ),
       ),
     );
   }
