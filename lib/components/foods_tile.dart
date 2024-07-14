@@ -158,10 +158,39 @@ class FoodsFullTile extends StatelessWidget {
   }
 }
 
-class FoodsTileGrid extends StatelessWidget {
-  const FoodsTileGrid({super.key, required this.food, required this.onTap});
+class FoodsTileGrid extends StatefulWidget {
+  const FoodsTileGrid({
+    super.key,
+    required this.food,
+    required this.onTapPlus,
+    this.onTapLess,
+  });
   final Food food;
-  final void Function()? onTap;
+  final void Function()? onTapPlus;
+  final void Function()? onTapLess;
+
+  @override
+  State<FoodsTileGrid> createState() => _FoodsTileGridState();
+}
+
+class _FoodsTileGridState extends State<FoodsTileGrid> {
+  int count = 0;
+
+  void _incrementCount() {
+    setState(() {
+      count++;
+    });
+    if (widget.onTapPlus != null) widget.onTapPlus!();
+  }
+
+  void _decrementCount() {
+    if (count > 0) {
+      setState(() {
+        count--;
+      });
+      if (widget.onTapLess != null) widget.onTapLess!();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -186,51 +215,63 @@ class FoodsTileGrid extends StatelessWidget {
             height: 90,
             width: double.infinity,
             child: ClipRRect(
+              borderRadius: BorderRadius.vertical(top: Radius.circular(8)),
               child: Image.asset(
-                food.path,
+                widget.food.path,
                 fit: BoxFit.cover,
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  food.name,
-                  style: Theme.of(context).textTheme.bodyMedium,
-                ),
-                Text(
-                  food.description,
+          Column(
+            children: [
+              Text(
+                widget.food.name,
+                style: Theme.of(context).textTheme.bodyMedium,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                child: Text(
+                  widget.food.description,
                   softWrap: true,
                   style: Theme.of(context).textTheme.bodySmall,
                 ),
-              ],
-            ),
-          ),
-          Text(
-            'R\$ ${food.price.toStringAsFixed(2)}',
-            style: Theme.of(context).textTheme.bodyLarge,
-          ),
-          GestureDetector(
-            onTap: onTap,
-            child: Container(
-              width: double.infinity,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.vertical(bottom: Radius.circular(6)),
-                color: Theme.of(context).colorScheme.primary,
               ),
-              child: Padding(
-                padding: const EdgeInsets.all(4.0),
-                child: Text(
-                  'Adicionar ao carrinho',
-                  style: Theme.of(context).textTheme.labelSmall,
-                  textAlign: TextAlign.center,
-                  softWrap: true,
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'R\$ ${widget.food.price.toStringAsFixed(2)}',
+                style: Theme.of(context).textTheme.bodyLarge,
+              ),
+              GestureDetector(
+                onTap: _incrementCount,
+                child: Container(
+                  margin: EdgeInsets.all(4),
+                  decoration: BoxDecoration(
+                    color: Color.fromARGB(255, 5, 12, 112),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Icon(Icons.add, color: Colors.white),
                 ),
               ),
-            ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 4.0),
+                child: Text('$count'),
+              ),
+              GestureDetector(
+                onTap: _decrementCount,
+                child: Container(
+                  margin: EdgeInsets.all(4),
+                  decoration: BoxDecoration(
+                    color: Color.fromARGB(255, 5, 12, 112),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Icon(Icons.remove, color: Colors.white),
+                ),
+              ),
+            ],
           ),
         ],
       ),

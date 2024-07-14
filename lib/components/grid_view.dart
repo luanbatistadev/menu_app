@@ -29,6 +29,9 @@ class _GridViewChickenState extends State<GridViewChicken> {
       );
     });
   }
+  void removeFoodFromCart(Food food) {
+    Provider.of<Cart>(context, listen: false).removeItemFromCart(food);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +66,8 @@ class _GridViewChickenState extends State<GridViewChicken> {
                 Food food = filteredItems[index];
                 return FoodsTileGrid(
                   food: food,
-                  onTap: () => addFoodToCart(food),
+                  onTapPlus: () => addFoodToCart(food),
+                  onTapLess: () => removeFoodFromCart(food),
                 );
               },
             ),

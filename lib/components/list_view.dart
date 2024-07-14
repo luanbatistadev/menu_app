@@ -19,7 +19,7 @@ class _ListViewChickenState extends State<ListViewChicken> {
 
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Text('Added to cart'),
+        content: Text('Adicionado ao carrinho!'),
         duration: Duration(seconds: 1),
       ),
     );

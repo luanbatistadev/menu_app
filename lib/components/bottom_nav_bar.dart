@@ -7,10 +7,10 @@ class MyAppBottomNavigation extends StatefulWidget {
   final void Function(int)? onTabChange;
 
   @override
-  State<MyAppBottomNavigation> createState() => _MyAppBottomNavigationState();
+  State<MyAppBottomNavigation> createState() => _BottomNavigationState();
 }
 
-class _MyAppBottomNavigationState extends State<MyAppBottomNavigation> {
+class _BottomNavigationState extends State<MyAppBottomNavigation> {
   int index = 0;
   @override
   Widget build(BuildContext context) {
