@@ -192,21 +192,22 @@ class FoodsTileGrid extends StatelessWidget {
               ),
             ),
           ),
-          Column(
-            children: [
-              Text(
-                food.name,
-                style: Theme.of(context).textTheme.bodyMedium,
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                child: Text(
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  food.name,
+                  style: Theme.of(context).textTheme.bodyMedium,
+                ),
+                Text(
                   food.description,
                   softWrap: true,
                   style: Theme.of(context).textTheme.bodySmall,
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
           Text(
             'R\$ ${food.price.toStringAsFixed(2)}',
