@@ -23,12 +23,13 @@ class _GridViewChickenState extends State<GridViewChicken> {
     _debounce = Timer(Duration(milliseconds: 1000), () {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('Added to cart'),
+          content: Text('Adicionado ao carrinho 🥰🙏🏾'),
           duration: Duration(seconds: 1),
         ),
       );
     });
   }
+
   void removeFoodFromCart(Food food) {
     Provider.of<Cart>(context, listen: false).removeItemFromCart(food);
   }
@@ -54,6 +55,9 @@ class _GridViewChickenState extends State<GridViewChicken> {
           physics: BouncingScrollPhysics(),
           restorationId: 'GRID VIEW PRODUCTS',
           slivers: [
+            SliverToBoxAdapter(
+              child: SizedBox(height: 8),
+            ),
             SliverGrid.builder(
               itemCount: filteredItems.length,
               gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
@@ -70,6 +74,9 @@ class _GridViewChickenState extends State<GridViewChicken> {
                   onTapLess: () => removeFoodFromCart(food),
                 );
               },
+            ),
+            SliverToBoxAdapter(
+              child: SizedBox(height: 20),
             ),
           ],
         ),

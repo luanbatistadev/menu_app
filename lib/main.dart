@@ -85,6 +85,11 @@ class ThemeWidget extends StatelessWidget {
                       fontSize: 14,
                       color: Colors.white,
                     ),
+                    displaySmall: TextStyle(
+                      color: Colors.white,
+                      fontSize: 10,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                   colorScheme: const ColorScheme.light().copyWith(
                     primary: Color.fromARGB(255, 5, 12, 112),
@@ -103,34 +108,45 @@ class ThemeWidget extends StatelessWidget {
                       textStyle: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
+                        color: Colors.white,
                       ),
                     ),
                     titleSmall: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
+                      color: Colors.white,
                     ),
                     titleMedium: GoogleFonts.lexend(
                       textStyle: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 16,
+                        color: Colors.white,
                       ),
                     ),
                     bodyMedium: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 14,
+                      color: Colors.white,
                     ),
                     bodySmall: TextStyle(
                       fontWeight: FontWeight.normal,
                       fontSize: 12,
+                      color: Colors.white,
                     ),
                     bodyLarge: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 16,
+                      color: Colors.white,
                     ),
                     labelSmall: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 14,
-                      color: Colors.black,
+                      color: Colors.white,
+                    ),
+                    displaySmall: TextStyle(
+                      color: Color(0xff1E1D24),
+                      fontSize: 10,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                   colorScheme: const ColorScheme.dark().copyWith(
@@ -141,6 +157,7 @@ class ThemeWidget extends StatelessWidget {
                   ),
                   tabBarTheme: TabBarTheme(
                     labelColor: Colors.white,
+                    unselectedLabelColor: Colors.white.withOpacity(.6),
                   ),
                   bottomNavigationBarTheme: BottomNavigationBarThemeData(
                     selectedItemColor: Colors.white,

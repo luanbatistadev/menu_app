@@ -23,7 +23,8 @@ class _CartItemState extends State<CartItem> {
     return Padding(
       padding: const EdgeInsets.only(bottom: 5),
       child: ListTile(
-        leading: ClipOval(
+        leading: ClipRRect(
+          borderRadius: BorderRadius.circular(12),
           child: Image.asset(
             widget.food.path,
             width: 60,
@@ -60,7 +61,7 @@ class _CartItemState extends State<CartItem> {
                   widget.removeItemFromCart(widget.food);
                 },
                 icon: Icon(
-                  Icons.delete_outline,
+                  Icons.delete_outline_rounded,
                   color: Colors.red[900],
                 ),
               ),

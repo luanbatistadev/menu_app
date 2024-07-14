@@ -59,7 +59,8 @@ class _ThemeChangeIconState extends State<ThemeChangeIcon> with SingleTickerProv
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(vsync: this, duration: Duration(milliseconds: 300));
+    _controller = AnimationController(vsync: this, duration: Duration(milliseconds: 500));
+    isLightMode.value ? _controller.value = 1 : _controller.value = .5;
   }
 
   @override
@@ -85,8 +86,8 @@ class _ThemeChangeIconState extends State<ThemeChangeIcon> with SingleTickerProv
           },
           borderRadius: BorderRadius.circular(30),
           child: SizedBox(
-            width: 70,
-            height: 35,
+            width: 50,
+            height: 25,
             child: LottieBuilder.asset(
               'assets/animations/theme.json',
               controller: _controller,

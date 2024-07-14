@@ -45,17 +45,13 @@ class _BottomNavigationState extends State<MyAppBottomNavigation> {
                     curve: Curves.easeInOut,
                     child: Container(
                       decoration: BoxDecoration(
-                        color: Color.fromARGB(255, 5, 12, 112),
+                        color: Theme.of(context).colorScheme.primary,
                         borderRadius: BorderRadius.circular(8),
                       ),
                       padding: EdgeInsets.symmetric(horizontal: 6, vertical: 2),
                       child: Text(
                         '${cart.getCartLength()}',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 10,
-                          fontWeight: FontWeight.bold,
-                        ),
+                        style: Theme.of(context).textTheme.displaySmall,
                       ),
                     ),
                   ),

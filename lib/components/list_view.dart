@@ -42,6 +42,9 @@ class _ListViewChickenState extends State<ListViewChicken> {
         : CustomScrollView(
             physics: BouncingScrollPhysics(),
             slivers: [
+              SliverToBoxAdapter(
+                child: SizedBox(height: 8),
+              ),
               SliverList.builder(
                 itemCount: filteredItems.length,
                 itemBuilder: (BuildContext context, int index) {
@@ -51,6 +54,9 @@ class _ListViewChickenState extends State<ListViewChicken> {
                     onTap: () => addFoodToCart(food),
                   );
                 },
+              ),
+              SliverToBoxAdapter(
+                child: SizedBox(height: 20),
               ),
             ],
           );

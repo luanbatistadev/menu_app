@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:menu_app/components/bounce.dart';
 import 'package:menu_app/models/foods.dart';
 
 class FoodsSimpleTile extends StatefulWidget {
@@ -222,53 +223,60 @@ class _FoodsTileGridState extends State<FoodsTileGrid> {
               ),
             ),
           ),
-          Column(
-            children: [
-              Text(
-                widget.food.name,
-                style: Theme.of(context).textTheme.bodyMedium,
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                child: Text(
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  widget.food.name,
+                  style: Theme.of(context).textTheme.bodyMedium,
+                ),
+                Text(
                   widget.food.description,
                   softWrap: true,
                   style: Theme.of(context).textTheme.bodySmall,
                 ),
-              ),
-            ],
+              ],
+            ),
+          ),
+          Text(
+            'R\$ ${widget.food.price.toStringAsFixed(2)}',
+            style: Theme.of(context).textTheme.bodyLarge,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
-                'R\$ ${widget.food.price.toStringAsFixed(2)}',
-                style: Theme.of(context).textTheme.bodyLarge,
-              ),
-              GestureDetector(
+              BouncingButton(
                 onTap: _incrementCount,
                 child: Container(
                   margin: EdgeInsets.all(4),
                   decoration: BoxDecoration(
-                    color: Color.fromARGB(255, 5, 12, 112),
+                    color: Theme.of(context).colorScheme.primary,
                     borderRadius: BorderRadius.circular(12),
                   ),
-                  child: Icon(Icons.add, color: Colors.white),
+                  child: Icon(
+                    Icons.add,
+                    color: Theme.of(context).colorScheme.primaryContainer,
+                  ),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 4.0),
                 child: Text('$count'),
               ),
-              GestureDetector(
+              BouncingButton(
                 onTap: _decrementCount,
                 child: Container(
                   margin: EdgeInsets.all(4),
                   decoration: BoxDecoration(
-                    color: Color.fromARGB(255, 5, 12, 112),
+                    color: Theme.of(context).colorScheme.primary,
                     borderRadius: BorderRadius.circular(12),
                   ),
-                  child: Icon(Icons.remove, color: Colors.white),
+                  child: Icon(
+                    Icons.remove,
+                    color: Theme.of(context).colorScheme.primaryContainer,
+                  ),
                 ),
               ),
             ],
