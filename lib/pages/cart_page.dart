@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:menu_app/main.dart';
+import 'package:menu_app/components/app_bar.dart';
 import 'package:menu_app/models/cart.dart';
 import 'package:menu_app/models/cart_item.dart';
 import 'package:menu_app/models/foods.dart';
@@ -31,23 +31,10 @@ class _CartPageState extends State<CartPage> {
                 style: Theme.of(context).textTheme.bodyLarge,
               ),
               centerTitle: true,
-              actions: [
+              actions: const [
                 Padding(
-                  padding: const EdgeInsets.only(right: 20),
-                  child: ValueListenableBuilder(
-                    valueListenable: isLightMode,
-                    builder: (context, isLight, _) {
-                      return IconButton(
-                        icon: Icon(
-                          isLight ? Icons.light_mode_rounded : Icons.dark_mode_rounded,
-                          color: Theme.of(context).colorScheme.primary,
-                        ),
-                        onPressed: () {
-                          isLightMode.value = !isLight;
-                        },
-                      );
-                    },
-                  ),
+                  padding: EdgeInsets.only(right: 20),
+                  child: ThemeChangeIcon(),
                 ),
               ],
             ),
