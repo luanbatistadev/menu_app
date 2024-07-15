@@ -131,12 +131,7 @@ class FoodsFullTile extends StatelessWidget {
                     onTap: onTap,
                     child: Container(
                       decoration: BoxDecoration(
-                        color: Color.fromARGB(
-                          255,
-                          5,
-                          12,
-                          112,
-                        ),
+                        color: Theme.of(context).colorScheme.tertiaryContainer,
                         borderRadius: BorderRadius.circular(6),
                       ),
                       child: Padding(
