@@ -52,7 +52,6 @@ class _GridViewChickenState extends State<GridViewChicken> {
       return Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8),
         child: CustomScrollView(
-          physics: BouncingScrollPhysics(),
           restorationId: 'GRID VIEW PRODUCTS',
           slivers: [
             SliverToBoxAdapter(

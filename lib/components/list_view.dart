@@ -40,7 +40,6 @@ class _ListViewChickenState extends State<ListViewChicken> {
             ),
           )
         : CustomScrollView(
-            physics: BouncingScrollPhysics(),
             slivers: [
               SliverToBoxAdapter(
                 child: SizedBox(height: 8),
