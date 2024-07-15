@@ -30,18 +30,15 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
       child: NestedScrollView(
         headerSliverBuilder: (context, innerBoxIsScrolled) => [
           SliverAppBar(
-            expandedHeight: 300,
+            expandedHeight: 230,
             pinned: true,
-            toolbarHeight: 94,
+            toolbarHeight: 38,
             surfaceTintColor: Colors.white,
             backgroundColor: Theme.of(context).scaffoldBackgroundColor,
             leadingWidth: double.infinity,
             leading: Column(
               children: [
                 AppBarHome(),
-                SearchBarComponent(
-                  filterNotifier: filterNotifier,
-                ),
               ],
             ),
             bottom: PreferredSize(
@@ -52,7 +49,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
               background: Column(
                 children: [
                   SizedBox(
-                    height: 90,
+                    height: 30,
                   ),
                   Semantics(
                     child: Padding(
