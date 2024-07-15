@@ -22,6 +22,7 @@ class _RBMenuAppState extends State<RBMenuApp> {
       create: (context) => Cart(),
       builder: (context, child) => MaterialApp(
         debugShowCheckedModeBanner: false,
+        
         home: BasePage(),
       ),
     );

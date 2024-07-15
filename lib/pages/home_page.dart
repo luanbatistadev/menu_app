@@ -24,13 +24,6 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
   }
 
   @override
-  void dispose() {
-    _tabController.dispose();
-    filterNotifier.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.sizeOf(context).width;
     return SafeArea(
@@ -61,15 +54,17 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                   SizedBox(
                     height: 90,
                   ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 10, bottom: 15, left: 25),
-                    child: Row(
-                      children: [
-                        Text(
-                          'Conheça:',
-                          style: Theme.of(context).textTheme.titleLarge,
-                        ),
-                      ],
+                  Semantics(
+                    child: Padding(
+                      padding: EdgeInsets.only(top: 10, bottom: 15, left: 25),
+                      child: Row(
+                        children: [
+                          Text(
+                            'Conheça:',
+                            style: Theme.of(context).textTheme.titleLarge,
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                   SizedBox(
@@ -105,5 +100,12 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    filterNotifier.dispose();
+    super.dispose();
   }
 }

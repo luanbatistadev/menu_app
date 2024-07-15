@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:menu_app/utils/filters.dart';
 
 class FilterTabView extends StatelessWidget {
   const FilterTabView({super.key, required this.tabController});
@@ -24,80 +25,22 @@ class FilterTabView extends StatelessWidget {
           bottom: 2,
         ),
         tabAlignment: TabAlignment.center,
-        tabs: const [
-          Tab(
-            child: SizedBox(
-              width: 80,
-              child: Align(
-                alignment: Alignment.center,
-                child: Text(
-                  'Assados',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+        tabs: kFilters.map(
+          (filter) {
+            return Tab(
+              child: SizedBox(
+                width: 80,
+                child: Align(
+                  alignment: Alignment.center,
+                  child: Text(
+                    filter,
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  ),
                 ),
               ),
-            ),
-          ),
-          Tab(
-            child: SizedBox(
-              width: 80,
-              child: Align(
-                alignment: Alignment.center,
-                child: Text(
-                  'Saladas',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                ),
-              ),
-            ),
-          ),
-          Tab(
-            child: SizedBox(
-              width: 80,
-              child: Align(
-                alignment: Alignment.center,
-                child: Text(
-                  'Massas',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                ),
-              ),
-            ),
-          ),
-          Tab(
-            child: SizedBox(
-              width: 80,
-              child: Align(
-                alignment: Alignment.center,
-                child: Text(
-                  'Sopas',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                ),
-              ),
-            ),
-          ),
-          Tab(
-            child: SizedBox(
-              width: 80,
-              child: Align(
-                alignment: Alignment.center,
-                child: Text(
-                  'Petiscos',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                ),
-              ),
-            ),
-          ),
-          Tab(
-            child: SizedBox(
-              width: 80,
-              child: Align(
-                alignment: Alignment.center,
-                child: Text(
-                  'Bebidas',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                ),
-              ),
-            ),
-          ),
-        ],
+            );
+          },
+        ).toList(),
       ),
     );
   }

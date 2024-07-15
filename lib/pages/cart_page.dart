@@ -15,7 +15,7 @@ class CartPage extends StatefulWidget {
 class _CartPageState extends State<CartPage> {
   bool isCard = true;
   final GlobalKey<SliverAnimatedListState> _listKey = GlobalKey<SliverAnimatedListState>();
-
+  
   @override
   Widget build(BuildContext context) {
     return Consumer<Cart>(
