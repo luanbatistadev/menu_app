@@ -25,7 +25,7 @@ class _BasePageState extends State<BasePage> with SingleTickerProviderStateMixin
             CartPage(),
           ],
         ),
-        bottomNavigationBar: MyAppBottomNavigation(
+        bottomNavigationBar: RBMenuBottomNavigation(
           onTabChange: (index) => navigateBottomBar(index),
         ),
       ),
