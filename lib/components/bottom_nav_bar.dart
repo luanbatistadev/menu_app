@@ -26,6 +26,7 @@ class _BottomNavigationState extends State<RBMenuBottomNavigation> {
         iconSize: 32,
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Início'),
+          BottomNavigationBarItem(icon: Icon(Icons.search_rounded), label: 'Pesquisa'),
           BottomNavigationBarItem(
             icon: Stack(
               children: [

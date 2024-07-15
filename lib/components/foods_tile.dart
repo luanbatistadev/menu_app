@@ -39,7 +39,7 @@ class FoodsFullTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(right: 25, left: 25, bottom: 10, top: 10),
-      height: 120,
+      height: 140,
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.primaryContainer,
         borderRadius: BorderRadius.circular(8),

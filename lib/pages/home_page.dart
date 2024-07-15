@@ -15,7 +15,6 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
-  final ValueNotifier<String> filterNotifier = ValueNotifier<String>('');
 
   @override
   void initState() {
@@ -76,25 +75,22 @@ class _HomePageState extends State<HomePage>
               ),
             ),
           ],
-          body: ValueListenableBuilder(
-            valueListenable: filterNotifier,
-            builder: (context, filter, child) => TabBarView(
-              controller: _tabController,
-              clipBehavior: Clip.hardEdge,
-              children: List.generate(
-                6,
-                (index) {
-                  if (screenSize < 480) {
-                    return ListViewChicken(
-                      filter: filter,
-                    );
-                  } else {
-                    return GridViewChicken(
-                      filter: filter,
-                    );
-                  }
-                },
-              ),
+          body: TabBarView(
+            controller: _tabController,
+            clipBehavior: Clip.hardEdge,
+            children: List.generate(
+              6,
+              (index) {
+                if (screenSize < 480) {
+                  return ListViewChicken(
+                    filter: '',
+                  );
+                } else {
+                  return GridViewChicken(
+                    filter: '',
+                  );
+                }
+              },
             ),
           ),
         ),
@@ -105,7 +101,6 @@ class _HomePageState extends State<HomePage>
   @override
   void dispose() {
     _tabController.dispose();
-    filterNotifier.dispose();
     super.dispose();
   }
 }
