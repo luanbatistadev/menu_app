@@ -22,10 +22,10 @@ class _BasePageState extends State<BasePage>
         body: TabBarView(
           controller: _controller,
           physics: NeverScrollableScrollPhysics(),
-          children: [
-            const HomePage(),
+          children: const [
+            HomePage(),
             SearchPage(),
-            const CartPage(),
+            CartPage(),
           ],
         ),
         bottomNavigationBar: RBMenuBottomNavigation(
@@ -44,5 +44,4 @@ class _BasePageState extends State<BasePage>
     super.initState();
     _controller = TabController(length: 3, vsync: this);
   }
-   
 }
