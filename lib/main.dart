@@ -99,6 +99,7 @@ class ThemeWidget extends StatelessWidget {
                     primaryContainer: Colors.white,
                     secondaryContainer: Color(0xff1E1D24),
                     tertiaryContainer: Color(0xff1B55F5),
+                    surfaceContainer: Color(0xff1E1D24).withOpacity(.04),
                   ),
                   tabBarTheme: TabBarTheme(
                     labelColor: Color(0xff1B55F5),
@@ -166,6 +167,7 @@ class ThemeWidget extends StatelessWidget {
                     primaryContainer: Color(0xff1E1D24),
                     secondaryContainer: Colors.white,
                     tertiaryContainer: Color(0xff1E1D24),
+                    surfaceContainer: Colors.white.withOpacity(.04),
                   ),
                   tabBarTheme: TabBarTheme(
                     labelColor: Colors.white,
