@@ -4,6 +4,7 @@ import 'package:menu_app/models/cart.dart';
 import 'package:menu_app/models/cart_item.dart';
 import 'package:menu_app/models/foods.dart';
 import 'package:provider/provider.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class CartPage extends StatefulWidget {
   const CartPage({super.key});
@@ -16,6 +17,17 @@ class _CartPageState extends State<CartPage> {
   bool isCard = true;
   final GlobalKey<SliverAnimatedListState> _listKey =
       GlobalKey<SliverAnimatedListState>();
+  late bool _isLoading;
+  @override
+  void initState() {
+    super.initState();
+    _isLoading = true;
+    Future.delayed(const Duration(seconds: 2), () {
+      setState(() {
+        _isLoading = false;
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -47,14 +59,17 @@ class _CartPageState extends State<CartPage> {
               if (value.getCartLength() == 0)
                 SliverFillRemaining(
                   hasScrollBody: false,
-                  child: SizedBox(
-                    height: value.getCartLength() == 0 ? 100 : 400,
-                    child: Center(
-                      child: Text(
-                        'Carrinho vazio 😔'
-                        '\nAdicione itens ao carrinho 🙏🏾',
-                        style: Theme.of(context).textTheme.bodyLarge,
-                        textAlign: TextAlign.center,
+                  child: Skeletonizer(
+                    enabled: _isLoading,
+                    child: SizedBox(
+                      height: value.getCartLength() == 0 ? 100 : 400,
+                      child: Center(
+                        child: Text(
+                          'Carrinho vazio 😔'
+                          '\nAdicione itens ao carrinho 🙏🏾',
+                          style: Theme.of(context).textTheme.bodyLarge,
+                          textAlign: TextAlign.center,
+                        ),
                       ),
                     ),
                   ),
@@ -70,28 +85,31 @@ class _CartPageState extends State<CartPage> {
                         final entry = cartItems[index];
                         Food food = entry.key;
                         int quantity = entry.value;
-                        return SizeTransition(
-                          sizeFactor: animation,
-                          child: CartItem(
-                            food: food,
-                            quantity: quantity,
-                            removeItemFromCart: (p0) {
-                              value.removeItemFromCart(p0);
-                              if (!value.hasItemInCart(food)) {
-                                _listKey.currentState!.removeItem(
-                                  index,
-                                  (context, animation) => SizeTransition(
-                                    sizeFactor: animation,
-                                    child: CartItem(
-                                      food: food,
-                                      quantity: quantity,
-                                      removeItemFromCart: (p0) {},
+                        return Skeletonizer(
+                          enabled: _isLoading,
+                          child: SizeTransition(
+                            sizeFactor: animation,
+                            child: CartItem(
+                              food: food,
+                              quantity: quantity,
+                              removeItemFromCart: (p0) {
+                                value.removeItemFromCart(p0);
+                                if (!value.hasItemInCart(food)) {
+                                  _listKey.currentState!.removeItem(
+                                    index,
+                                    (context, animation) => SizeTransition(
+                                      sizeFactor: animation,
+                                      child: CartItem(
+                                        food: food,
+                                        quantity: quantity,
+                                        removeItemFromCart: (p0) {},
+                                      ),
                                     ),
-                                  ),
-                                  duration: Duration(milliseconds: 150),
-                                );
-                              }
-                            },
+                                    duration: Duration(milliseconds: 150),
+                                  );
+                                }
+                              },
+                            ),
                           ),
                         );
                       },
