@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:menu_app/components/app_bar.dart';
 import 'package:menu_app/loading/loading_home_page.dart';
+import 'package:menu_app/models/shimmer.dart';
 
 class LoadingCartPage extends StatelessWidget {
   const LoadingCartPage({super.key});
@@ -36,9 +37,9 @@ class LoadingCartPage extends StatelessWidget {
           ),
           screenSize < 480
               ? SliverList.builder(
-                  itemCount: 8,
+                  itemCount: 10,
                   itemBuilder: (BuildContext context, int index) {
-                    return LoadingFoodTile();
+                    return LoadingFoodCard();
                   },
                 )
               : SliverGrid.builder(
@@ -57,6 +58,45 @@ class LoadingCartPage extends StatelessWidget {
             child: SizedBox(height: 20),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class LoadingFoodCard extends StatelessWidget {
+  const LoadingFoodCard({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Padding(
+      padding: EdgeInsets.only(bottom: 5),
+      child: ListTile(
+        leading: Skeleton(
+          hasShadow: false,
+          height: 60,
+          width: 60,
+          borderR: 12,
+        ),
+        title: Row(
+          children: [
+            Skeleton(
+              hasShadow: false,
+              width: 260,
+              height: 15,
+              borderR: 12,
+            ),
+          ],
+        ),
+        subtitle: Row(
+          children: [
+            Skeleton(
+              hasShadow: false,
+              width: 150,
+              height: 15,
+              borderR: 12,
+            ),
+          ],
+        ),
       ),
     );
   }

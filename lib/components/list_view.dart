@@ -27,7 +27,7 @@ class _ListViewChickenState extends State<ListViewChicken> {
 
   @override
   Widget build(BuildContext context) {
-    final filteredItems = foodslist
+    final filteredItems = foodsList
         .where(
           (item) => item.name.toLowerCase().contains(widget.filter.toLowerCase()),
         )
@@ -100,13 +100,13 @@ class CarroselFoodListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.builder(
       scrollDirection: Axis.horizontal,
-      itemCount: foodslist.length,
+      itemCount: foodsList.length,
       padding: const EdgeInsets.symmetric(horizontal: 25),
       physics: const BouncingScrollPhysics(
         parent: AlwaysScrollableScrollPhysics(),
       ),
       itemBuilder: (BuildContext context, int index) {
-        Food food = foodslist[index];
+        Food food = foodsList[index];
         return FoodsSimpleTile(food: food);
       },
     );
