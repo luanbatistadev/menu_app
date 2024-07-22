@@ -20,7 +20,7 @@ List<Food> foodslist = [
   ),
   Food(
     name: 'Frango à Parmegiana',
-    price: 15.00,
+    price: 15.25,
     description: 'Peito de frango empanado com molho',
     path: 'lib/images/FRANGO2.png',
   ),
@@ -32,13 +32,13 @@ List<Food> foodslist = [
   ),
   Food(
     name: 'Frango à Milanesa',
-    price: 10.00,
+    price: 10.85,
     description: 'Filé de frango empanado e frito.',
     path: 'lib/images/FRANGO4.png',
   ),
   Food(
     name: 'Frango Xadrez',
-    price: 22.50,
+    price: 22.75,
     description: 'Frango salteado com legumes e molho especial.',
     path: 'lib/images/FRANGO5.png',
   ),
@@ -72,7 +72,7 @@ List<Food> foodslist = [
     description: 'Sopa quente com pedaços de frango e legumes.',
     path: 'lib/images/FRANGO10.png',
   ),
-    Food(
+  Food(
     name: 'Sopa de Legumes',
     price: 3.50,
     description: 'Sopa quente com uma mistura de legumes frescos.',

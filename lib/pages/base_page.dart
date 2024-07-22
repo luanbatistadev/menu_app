@@ -3,6 +3,7 @@ import 'package:menu_app/components/bottom_nav_bar.dart';
 import 'package:menu_app/main.dart';
 import 'package:menu_app/pages/cart_page.dart';
 import 'package:menu_app/pages/home_page.dart';
+import 'package:menu_app/pages/search_page.dart';
 
 class BasePage extends StatefulWidget {
   const BasePage({super.key});
@@ -10,7 +11,8 @@ class BasePage extends StatefulWidget {
   State createState() => _BasePageState();
 }
 
-class _BasePageState extends State<BasePage> with SingleTickerProviderStateMixin {
+class _BasePageState extends State<BasePage>
+    with SingleTickerProviderStateMixin {
   late TabController _controller;
 
   @override
@@ -20,12 +22,13 @@ class _BasePageState extends State<BasePage> with SingleTickerProviderStateMixin
         body: TabBarView(
           controller: _controller,
           physics: NeverScrollableScrollPhysics(),
-          children: const [
-            HomePage(),
-            CartPage(),
+          children: [
+            const HomePage(),
+            SearchPage(),
+            const CartPage(),
           ],
         ),
-        bottomNavigationBar: MyAppBottomNavigation(
+        bottomNavigationBar: RBMenuBottomNavigation(
           onTabChange: (index) => navigateBottomBar(index),
         ),
       ),
@@ -39,6 +42,7 @@ class _BasePageState extends State<BasePage> with SingleTickerProviderStateMixin
   @override
   void initState() {
     super.initState();
-    _controller = TabController(length: 2, vsync: this);
+    _controller = TabController(length: 3, vsync: this);
   }
+   
 }

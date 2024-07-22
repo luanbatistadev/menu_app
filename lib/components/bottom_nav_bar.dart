@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:menu_app/models/cart.dart';
 import 'package:provider/provider.dart';
 
-class MyAppBottomNavigation extends StatefulWidget {
-  const MyAppBottomNavigation({super.key, required this.onTabChange});
+class RBMenuBottomNavigation extends StatefulWidget {
+  const RBMenuBottomNavigation({super.key, required this.onTabChange});
   final void Function(int)? onTabChange;
 
   @override
-  State<MyAppBottomNavigation> createState() => _BottomNavigationState();
+  State<RBMenuBottomNavigation> createState() => _BottomNavigationState();
 }
 
-class _BottomNavigationState extends State<MyAppBottomNavigation> {
+class _BottomNavigationState extends State<RBMenuBottomNavigation> {
   int index = 0;
   @override
   Widget build(BuildContext context) {
@@ -26,6 +26,7 @@ class _BottomNavigationState extends State<MyAppBottomNavigation> {
         iconSize: 32,
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Início'),
+          BottomNavigationBarItem(icon: Icon(Icons.search_rounded), label: 'Pesquisa'),
           BottomNavigationBarItem(
             icon: Stack(
               children: [
@@ -58,7 +59,7 @@ class _BottomNavigationState extends State<MyAppBottomNavigation> {
                 ),
               ],
             ),
-            label: 'Carrinho',
+            label: 'Pedido',
           ),
         ],
       ),

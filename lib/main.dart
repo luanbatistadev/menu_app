@@ -22,7 +22,6 @@ class _RBMenuAppState extends State<RBMenuApp> {
       create: (context) => Cart(),
       builder: (context, child) => MaterialApp(
         debugShowCheckedModeBanner: false,
-        
         home: BasePage(),
       ),
     );
@@ -52,14 +51,14 @@ class ThemeWidget extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
                       ),
-                      color: Color.fromARGB(255, 5, 12, 112),
+                      color: Color(0xff1B55F5),
                     ),
                     titleMedium: GoogleFonts.lexend(
                       textStyle: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 16,
                       ),
-                      color: Color.fromARGB(255, 5, 12, 112),
+                      color: Color(0xff1B55F5),
                     ),
                     bodyMedium: TextStyle(
                       fontWeight: FontWeight.bold,
@@ -93,13 +92,22 @@ class ThemeWidget extends StatelessWidget {
                     ),
                   ),
                   colorScheme: const ColorScheme.light().copyWith(
-                    primary: Color.fromARGB(255, 5, 12, 112),
-                    secondary: Color.fromARGB(255, 5, 12, 112),
+                    primary: Color(0xff1B55F5),
+                    secondary: Color(0xff1B55F5),
+                    tertiary: Colors.white,
                     surface: Colors.white,
                     primaryContainer: Colors.white,
+                    secondaryContainer: Color(0xff1E1D24),
+                    tertiaryContainer: Color(0xff1B55F5),
                   ),
                   tabBarTheme: TabBarTheme(
-                    labelColor: Color.fromARGB(255, 5, 12, 112),
+                    labelColor: Color(0xff1B55F5),
+                  ),
+                  bottomNavigationBarTheme: BottomNavigationBarThemeData(
+                    type: BottomNavigationBarType.shifting,
+                    showUnselectedLabels: false,
+                    selectedItemColor: Color(0xff1B55F5),
+                    unselectedItemColor: Color(0xff1B55F5).withOpacity(.6),
                   ),
                 )
               : ThemeData.dark().copyWith(
@@ -152,9 +160,12 @@ class ThemeWidget extends StatelessWidget {
                   ),
                   colorScheme: const ColorScheme.dark().copyWith(
                     onSurface: Color(0xff1E1D24),
-                    secondary: Color.fromARGB(255, 5, 12, 112),
                     primary: Colors.white,
+                    secondary: Color(0xff1B55F5),
+                    tertiary: Colors.white,
                     primaryContainer: Color(0xff1E1D24),
+                    secondaryContainer: Colors.white,
+                    tertiaryContainer: Color(0xff1E1D24),
                   ),
                   tabBarTheme: TabBarTheme(
                     labelColor: Colors.white,
@@ -163,6 +174,9 @@ class ThemeWidget extends StatelessWidget {
                   bottomNavigationBarTheme: BottomNavigationBarThemeData(
                     selectedItemColor: Colors.white,
                     unselectedItemColor: Colors.white.withOpacity(.6),
+                    elevation: 100,
+                    showUnselectedLabels: false,
+                    type: BottomNavigationBarType.shifting,
                   ),
                 ),
           duration: Duration(milliseconds: 300),
