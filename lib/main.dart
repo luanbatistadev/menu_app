@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:menu_app/models/cart.dart';
+import 'package:menu_app/models/type_adapter.dart';
 import 'package:menu_app/pages/base_page.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+void main() async {
+  await Hive.initFlutter();
+  Hive.registerAdapter(FoodAdapter());
+  Hive.registerAdapter(ShoppingCartAdapter());
   runApp(RBMenuApp());
 }
 
@@ -16,6 +21,17 @@ class RBMenuApp extends StatefulWidget {
 }
 
 class _RBMenuAppState extends State<RBMenuApp> {
+  @override
+  void initState() {
+    super.initState();
+    openBox();
+  }
+
+  Future<void> openBox() async {
+    await Hive.openBox('cartBox');
+    await Hive.openBox('cartHistory');
+  }
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(

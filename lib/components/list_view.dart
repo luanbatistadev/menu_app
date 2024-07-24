@@ -16,7 +16,7 @@ class ListViewChicken extends StatefulWidget {
 class _ListViewChickenState extends State<ListViewChicken> {
   void addFoodToCart(Food food) {
     Provider.of<Cart>(context, listen: false).addItemToCart(food);
-
+    
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text('Adicionado ao carrinho!'),
