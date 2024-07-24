@@ -2,14 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:menu_app/models/cart.dart';
-import 'package:menu_app/models/type_adapter.dart';
 import 'package:menu_app/pages/base_page.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
   await Hive.initFlutter();
-  Hive.registerAdapter(FoodAdapter());
-  Hive.registerAdapter(ShoppingCartAdapter());
+
   runApp(RBMenuApp());
 }
 

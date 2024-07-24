@@ -2,9 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:menu_app/models/cart.dart';
 
-class HistoryShoppingPage extends StatelessWidget {
+class HistoryShoppingPage extends StatefulWidget {
   const HistoryShoppingPage({super.key});
 
+  @override
+  State<HistoryShoppingPage> createState() => _HistoryShoppingPageState();
+}
+
+class _HistoryShoppingPageState extends State<HistoryShoppingPage> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -31,52 +36,50 @@ class HistoryShoppingPage extends StatelessWidget {
                   ValueListenableBuilder(
                     valueListenable: box.listenable(),
                     builder: (context, Box box, _) {
-                      List<dynamic> cartHistory = box.get(
-                        'cartHistory',
-                        defaultValue: [],
-                      );
+                      final list = loadCartHistory();
 
                       return SliverList(
                         delegate: SliverChildBuilderDelegate(
                           (BuildContext context, int index) {
-                            if (index >= cartHistory.length) return null;
+                            if (index >= list.length) return null;
 
-                            ShoppingCart cart = cartHistory[index];
+                            ShoppingCart cart = list[index];
                             var items = cart.userCart.entries.toList();
 
                             return Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
-                              children: 0 == 0 ? [
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Text(
-                                    'Pedido ${index + 1} dados: ',
-                                    style:
-                                        Theme.of(context).textTheme.bodyLarge,
-                                  ),
-                                ),
-                                ...items.map((item) {
-                                  return Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                      vertical: 4.0,
-                                    ),
-                                    child: Row(
-                                      children: [
-                                        Expanded(child: Text(item.key.name)),
-                                        SizedBox(width: 10),
-                                        Text('Qtd: ${item.value}'),
-                                        SizedBox(width: 10),
-                                        Text(
-                                          'Total: R\$ ${(item.key.price * item.value).toStringAsFixed(2)}',
+                              children: 0 == 0
+                                  ? [
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Text(
+                                          'Pedido ${index + 1} dados: ',
+                                          style: Theme.of(context).textTheme.bodyLarge,
                                         ),
-                                      ],
-                                    ),
-                                  );
-                                }),
-                              ] : []
+                                      ),
+                                      ...items.map((item) {
+                                        return Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                            vertical: 4.0,
+                                          ),
+                                          child: Row(
+                                            children: [
+                                              Expanded(child: Text(item.key.name)),
+                                              SizedBox(width: 10),
+                                              Text('Qtd: ${item.value}'),
+                                              SizedBox(width: 10),
+                                              Text(
+                                                'Total: R\$ ${(item.key.price * item.value).toStringAsFixed(2)}',
+                                              ),
+                                            ],
+                                          ),
+                                        );
+                                      }),
+                                    ]
+                                  : [],
                             );
                           },
-                          childCount: cartHistory.length,
+                          childCount: list.length,
                         ),
                       );
                     },
@@ -85,10 +88,7 @@ class HistoryShoppingPage extends StatelessWidget {
                     child: ElevatedButton(
                       onPressed: () async {
                         await clearCartHistory();
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                              content: Text('Histórico de pedidos limpo!'),),
-                        );
+                        showSnackBar('Histórico de pedidos limpo!');
                       },
                       child: Text('Limpar Histórico'),
                     ),
@@ -101,8 +101,26 @@ class HistoryShoppingPage extends StatelessWidget {
       ),
     );
   }
+
+  void showSnackBar(String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+        duration: const Duration(seconds: 2),
+      ),
+    );
+  }
+
+  List<ShoppingCart> loadCartHistory() {
+    var box = Hive.box('cartHistory');
+    final result = box.get('cartHistory') as List<Map<dynamic, dynamic>>;
+    return result
+        .map((e) => ShoppingCart.fromMap(e as Map<Map<String, dynamic>, dynamic>))
+        .toList();
+  }
+
   Future<void> clearCartHistory() async {
-  var box = Hive.box('cartHistory');
-  await box.clear(); 
-}
+    var box = Hive.box('cartHistory');
+    await box.clear();
+  }
 }

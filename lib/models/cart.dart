@@ -44,8 +44,7 @@ class Cart extends ChangeNotifier {
   }
 
   double getTotalPrice() {
-    return userCart.entries
-        .fold(0.0, (total, entry) => total + entry.key.price * entry.value);
+    return userCart.entries.fold(0.0, (total, entry) => total + entry.key.price * entry.value);
   }
 
   int getCartLength() {
@@ -54,33 +53,27 @@ class Cart extends ChangeNotifier {
 }
 
 class ShoppingCart {
-  factory ShoppingCart.fromJson(String source) =>
-      ShoppingCart.fromMap(json.decode(source) as Map<String, dynamic>);
-
-  factory ShoppingCart.fromMap(Map<String, dynamic> map) {
+  factory ShoppingCart.fromMap(Map<Map<String, dynamic>, dynamic> map) {
+    final newUserCart = <Food, int>{};
+    map.forEach((key, value) {
+      Food food = Food.fromMap(key);
+      int quantity = value;
+      newUserCart[food] = quantity;
+    });
     return ShoppingCart(
-      userCart: Map<Food, int>.from(
-        (map['userCart'] as Map<Food, int>),
-      ),
+      userCart: newUserCart,
     );
   }
   ShoppingCart({required this.userCart});
 
-  @HiveField(0)
   final Map<Food, int> userCart;
 
-  Map<String, dynamic> convertCartToMap() {
-    Map<String, dynamic> cartMap = {};
+  Map<Map<String, dynamic>, dynamic> toMap() {
+    Map<Map<String, dynamic>, dynamic> userCartMap = {};
     userCart.forEach((food, quantity) {
-      cartMap[food.toMap().toString()] = quantity;
+      userCartMap[food.toMap()] = quantity;
     });
-    return cartMap;
-  }
-
-  Map<String, dynamic> toMap() {
-    return <String, dynamic>{
-      'userCart': userCart,
-    };
+    return userCartMap;
   }
 
   String toJson() => json.encode(toMap());
