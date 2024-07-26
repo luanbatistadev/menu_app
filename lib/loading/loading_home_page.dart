@@ -55,6 +55,7 @@ class _LoadingHomePageState extends State<LoadingHomePage>
                         hasShadow: false,
                         height: 20,
                         width: 60,
+                        borderR: 6,
                       ),
                     ),
                   ),
@@ -77,6 +78,7 @@ class _LoadingHomePageState extends State<LoadingHomePage>
                         hasShadow: false,
                         height: 25,
                         width: 60,
+                        borderR: 12,
                       ),
                     ),
                     SizedBox(
@@ -277,25 +279,49 @@ class LoadingFoodTile extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: const [
           Expanded(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Skeleton(
-                  hasShadow: false,
-                  height: 15,
-                  width: 95,
-                ),
-                Skeleton(
-                  hasShadow: false,
-                  height: 15,
-                  width: 95,
-                ),
-                Skeleton(
-                  hasShadow: false,
-                  height: 15,
-                  width: 95,
-                ),
-              ],
+            child: Padding(
+              padding: EdgeInsets.only(left: 10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    height: 15,
+                  ),
+                  Skeleton(
+                    hasShadow: false,
+                    height: 15,
+                    width: 95,
+                    borderR: 6,
+                  ),
+                  SizedBox(
+                    height: 25,
+                  ),
+                  Skeleton(
+                    hasShadow: false,
+                    height: 15,
+                    width: 125,
+                    borderR: 6,
+                  ),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  Skeleton(
+                    hasShadow: false,
+                    height: 15,
+                    width: 75,
+                    borderR: 6,
+                  ),
+                  SizedBox(
+                    height: 25,
+                  ),
+                  Skeleton(
+                    hasShadow: false,
+                    height: 15,
+                    width: 50,
+                    borderR: 6,
+                  ),
+                ],
+              ),
             ),
           ),
           Expanded(

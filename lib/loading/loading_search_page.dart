@@ -13,7 +13,7 @@ class LoadingSearchPage extends StatelessWidget {
         appBar: PreferredSize(
           preferredSize: Size.fromHeight(50),
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20),
+            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 4),
             child: Skeleton(
               hasShadow: false,
               width: double.infinity,

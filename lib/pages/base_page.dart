@@ -17,7 +17,7 @@ class _BasePageState extends State<BasePage>
 
   @override
   Widget build(BuildContext context) {
-    return ThemeWidget(
+    return ThemeWidgetTest(
       child: Scaffold(
         body: TabBarView(
           controller: _controller,

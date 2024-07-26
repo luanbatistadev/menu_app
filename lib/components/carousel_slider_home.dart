@@ -18,7 +18,7 @@ class CarroselFoodListView1 extends StatelessWidget {
         pauseAutoPlayOnTouch: true,
         viewportFraction: 0.8,
       ),
-      items: foodslist
+      items: foodsList
           .map((item) => SizedBox(
                 child: Center(
                     child: ClipRRect(borderRadius: BorderRadius.circular(12) ,child: Image.asset(item.path, fit: BoxFit.cover, width: 1000)),),

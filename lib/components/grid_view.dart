@@ -36,7 +36,7 @@ class _GridViewChickenState extends State<GridViewChicken> {
 
   @override
   Widget build(BuildContext context) {
-    final filteredItems = foodslist
+    final filteredItems = foodsList
         .where(
           (item) => item.name.toLowerCase().contains(widget.filter.toLowerCase()),
         )
