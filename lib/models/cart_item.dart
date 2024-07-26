@@ -53,7 +53,10 @@ class _CartItemState extends State<CartItem> {
             children: [
               Text(
                 'R\$${priceAcumulator.toStringAsFixed(2)}',
-                style: Theme.of(context).textTheme.bodySmall,
+                style: Theme.of(context)
+                    .textTheme
+                    .bodySmall
+                    ?.copyWith(fontWeight: FontWeight.bold),
               ),
               IconButton(
                 padding: EdgeInsets.all(1),

@@ -18,7 +18,8 @@ class CartPage extends StatefulWidget {
 class _CartPageState extends State<CartPage> {
   bool isCard = true;
   late Box box;
-  final GlobalKey<SliverAnimatedListState> _listKey = GlobalKey<SliverAnimatedListState>();
+  final GlobalKey<SliverAnimatedListState> _listKey =
+      GlobalKey<SliverAnimatedListState>();
 
   late bool _isLoading;
   @override
@@ -156,7 +157,9 @@ class _CartPageState extends State<CartPage> {
                                   vertical: 4,
                                 ),
                                 decoration: BoxDecoration(
-                                  color: Theme.of(context).colorScheme.primaryContainer,
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .primaryContainer,
                                   borderRadius: BorderRadius.circular(14),
                                 ),
                                 child: Text(
@@ -169,16 +172,22 @@ class _CartPageState extends State<CartPage> {
                               ),
                               RichText(
                                 text: TextSpan(
-                                  text: 'R\$ ${value.getTotalPrice().toString().split('.')[0]}',
+                                  text:
+                                      'R\$ ${value.getTotalPrice().toString().split('.')[0]}',
                                   style: theme.textTheme.bodyLarge?.copyWith(
                                     color: theme.colorScheme.primaryContainer,
                                   ),
                                   children: <TextSpan>[
                                     TextSpan(text: ','),
                                     TextSpan(
-                                      text: value.getTotalPrice().toStringAsFixed(2).split('.')[1],
-                                      style: theme.textTheme.bodyMedium?.copyWith(
-                                        color: theme.colorScheme.primaryContainer,
+                                      text: value
+                                          .getTotalPrice()
+                                          .toStringAsFixed(2)
+                                          .split('.')[1],
+                                      style:
+                                          theme.textTheme.bodyMedium?.copyWith(
+                                        color:
+                                            theme.colorScheme.primaryContainer,
                                       ),
                                     ),
                                   ],
@@ -195,7 +204,9 @@ class _CartPageState extends State<CartPage> {
                               ),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(8),
-                                color: Theme.of(context).colorScheme.primaryContainer,
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .primaryContainer,
                               ),
                               child: Row(
                                 children: [
@@ -205,7 +216,8 @@ class _CartPageState extends State<CartPage> {
                                   ),
                                   Icon(
                                     Icons.check_circle_rounded,
-                                    color: Theme.of(context).colorScheme.primary,
+                                    color:
+                                        Theme.of(context).colorScheme.primary,
                                   ),
                                 ],
                               ),
@@ -218,8 +230,9 @@ class _CartPageState extends State<CartPage> {
                 },
               ),
               secondChild: SizedBox.shrink(),
-              crossFadeState:
-                  value.getCartLength() > 0 ? CrossFadeState.showFirst : CrossFadeState.showSecond,
+              crossFadeState: value.getCartLength() > 0
+                  ? CrossFadeState.showFirst
+                  : CrossFadeState.showSecond,
             ),
           ),
         ),
@@ -234,6 +247,8 @@ class _CartPageState extends State<CartPage> {
       context: context,
       builder: (context) {
         return AlertDialog(
+          surfaceTintColor: Colors.transparent,
+          shadowColor: Colors.transparent,
           backgroundColor: Theme.of(context).colorScheme.primaryContainer,
           title: Text(
             'Pedido confirmado! 😎',
