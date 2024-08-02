@@ -13,7 +13,6 @@ class SearchPage extends StatefulWidget {
 
 class _SearchPageState extends State<SearchPage> {
   final ValueNotifier<String> filterNotifier = ValueNotifier<String>('');
-  // ignore: unused_field
   late bool _isLoading;
   @override
   void initState() {
@@ -42,7 +41,7 @@ class _SearchPageState extends State<SearchPage> {
               body: ValueListenableBuilder(
                 valueListenable: filterNotifier,
                 builder: (context, filter, child) => screenSize < 480
-                    ? ListViewChicken(
+                    ? ListViewFood(
                         filter: filter,
                       )
                     : GridViewChicken(

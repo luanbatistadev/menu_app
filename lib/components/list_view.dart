@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:menu_app/components/foods_tile.dart';
 import 'package:menu_app/models/cart.dart';
@@ -6,8 +5,8 @@ import 'package:menu_app/models/cart_item.dart';
 import 'package:menu_app/models/foods.dart';
 import 'package:provider/provider.dart';
 
-class ListViewChicken extends StatefulWidget {
-  const ListViewChicken({
+class ListViewFood extends StatefulWidget {
+  const ListViewFood({
     Key? key,
     required this.filter,
     this.category,
@@ -16,10 +15,10 @@ class ListViewChicken extends StatefulWidget {
   final String? category;
 
   @override
-  State<ListViewChicken> createState() => _ListViewChickenState();
+  State<ListViewFood> createState() => _ListViewFoodState();
 }
 
-class _ListViewChickenState extends State<ListViewChicken> {
+class _ListViewFoodState extends State<ListViewFood> {
   void addFoodToCart(Food food) {
     Provider.of<Cart>(context, listen: false).addItemToCart(food);
 
@@ -50,10 +49,6 @@ class _ListViewChickenState extends State<ListViewChicken> {
     } else {
       return CustomScrollView(
             slivers: [
-              SliverToBoxAdapter(
-                child: widget.category != null ?
-                SizedBox(height: 8, child: Text('${widget.category}')): SizedBox(height: 8,),
-              ),
               SliverList.builder(
                 itemCount: filteredItems.length,
                 itemBuilder: (BuildContext context, int index) {
@@ -63,9 +58,6 @@ class _ListViewChickenState extends State<ListViewChicken> {
                     onTap: () => addFoodToCart(food),
                   );
                 },
-              ),
-              SliverToBoxAdapter(
-                child: SizedBox(height: 20),
               ),
             ],
           );

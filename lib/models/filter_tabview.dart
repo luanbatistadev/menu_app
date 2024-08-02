@@ -1,8 +1,15 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+
 import 'package:menu_app/utils/filters.dart';
 
 class FilterTabView extends StatelessWidget {
-  const FilterTabView({super.key, required this.tabController});
+  final Function(int) onTabSelected;
+  const FilterTabView({
+    Key? key,
+    required this.onTabSelected,
+    required this.tabController,
+  }) : super(key: key);
   final TabController tabController;
 
   @override
@@ -41,6 +48,7 @@ class FilterTabView extends StatelessWidget {
             );
           },
         ).toList(),
+        onTap: (int index) => onTabSelected(index),
       ),
     );
   }
