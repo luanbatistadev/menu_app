@@ -1,14 +1,21 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
 import 'package:menu_app/components/foods_tile.dart';
 import 'package:menu_app/models/cart.dart';
 import 'package:menu_app/models/foods.dart';
-import 'package:provider/provider.dart';
 
 class GridViewChicken extends StatefulWidget {
-  const GridViewChicken({super.key, required this.filter});
+  const GridViewChicken({
+    Key? key,
+    required this.filter,
+    this.category,
+  }) : super(key: key);
   final String filter;
+  final String? category;
 
   @override
   State<GridViewChicken> createState() => _GridViewChickenState();
@@ -36,11 +43,13 @@ class _GridViewChickenState extends State<GridViewChicken> {
 
   @override
   Widget build(BuildContext context) {
-    final filteredItems = foodsList
-        .where(
-          (item) => item.name.toLowerCase().contains(widget.filter.toLowerCase()),
-        )
-        .toList();
+    final filteredItems = foodsList.where((item) {
+      final matchesFilter =
+          item.name.toLowerCase().contains(widget.filter.toLowerCase());
+      final matchesCategory =
+          widget.category == null || item.category == widget.category;
+      return matchesFilter && matchesCategory;
+    }).toList();
     if (filteredItems.isEmpty) {
       return Center(
         child: Text(

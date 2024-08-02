@@ -7,7 +7,7 @@ import 'package:provider/provider.dart';
 
 void main() async {
   await Hive.initFlutter();
-
+  
   runApp(RBMenuApp());
 }
 

@@ -8,12 +8,14 @@ class Food {
     required this.price,
     required this.description,
     required this.path,
+    required this.category,
   });
   final int id;
   final String name;
   final double price;
   final String description;
   final String path;
+  final String category;
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
@@ -22,6 +24,7 @@ class Food {
       'price': price,
       'description': description,
       'path': path,
+      'category': category,
     };
   }
 
@@ -32,12 +35,59 @@ class Food {
       price: map['price'] as double,
       description: map['description'] as String,
       path: map['path'] as String,
+      category: map['category'] as String,
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory Food.fromJson(String source) => Food.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory Food.fromJson(String source) =>
+      Food.fromMap(json.decode(source) as Map<String, dynamic>);
+
+  Food copyWith({
+    int? id,
+    String? name,
+    double? price,
+    String? description,
+    String? path,
+    String? category,
+  }) {
+    return Food(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      price: price ?? this.price,
+      description: description ?? this.description,
+      path: path ?? this.path,
+      category: category ?? this.category,
+    );
+  }
+
+  @override
+  String toString() {
+    return 'Food(id: $id, name: $name, price: $price, description: $description, path: $path, category: $category)';
+  }
+
+  @override
+  bool operator ==(covariant Food other) {
+    if (identical(this, other)) return true;
+
+    return other.id == id &&
+        other.name == name &&
+        other.price == price &&
+        other.description == description &&
+        other.path == path &&
+        other.category == category;
+  }
+
+  @override
+  int get hashCode {
+    return id.hashCode ^
+        name.hashCode ^
+        price.hashCode ^
+        description.hashCode ^
+        path.hashCode ^
+        category.hashCode;
+  }
 }
 
 List<Food> foodsList = [
@@ -47,6 +97,7 @@ List<Food> foodsList = [
     price: 12.50,
     description: 'Frango grelhado temperado com ervas frescas.',
     path: 'lib/images/FRANGO1.png',
+    category: 'Assados',
   ),
   Food(
     id: 2,
@@ -54,6 +105,7 @@ List<Food> foodsList = [
     price: 15.25,
     description: 'Peito de frango empanado com molho',
     path: 'lib/images/FRANGO2.png',
+    category: 'Assados',
   ),
   Food(
     id: 3,
@@ -61,6 +113,7 @@ List<Food> foodsList = [
     price: 18.50,
     description: 'Frango assado com batatas temperadas.',
     path: 'lib/images/FRANGO3.png',
+    category: 'Assados',
   ),
   Food(
     id: 4,
@@ -68,6 +121,7 @@ List<Food> foodsList = [
     price: 10.85,
     description: 'Filé de frango empanado e frito.',
     path: 'lib/images/FRANGO4.png',
+    category: 'Assados',
   ),
   Food(
     id: 5,
@@ -75,6 +129,7 @@ List<Food> foodsList = [
     price: 22.75,
     description: 'Frango salteado com legumes e molho especial.',
     path: 'lib/images/FRANGO5.png',
+    category: 'Saladas',
   ),
   Food(
     id: 6,
@@ -82,6 +137,7 @@ List<Food> foodsList = [
     price: 16.00,
     description: 'Salada fresca com peito de frango grelhado.',
     path: 'lib/images/FRANGO6.png',
+    category: 'Saladas',
   ),
   Food(
     id: 7,
@@ -89,6 +145,7 @@ List<Food> foodsList = [
     price: 8.50,
     description: 'Coxinha de frango assada com massa crocante.',
     path: 'lib/images/FRANGO7.png',
+    category: 'Saladas',
   ),
   Food(
     id: 8,
@@ -96,6 +153,7 @@ List<Food> foodsList = [
     price: 14.50,
     description: 'Frango cozido com molho de curry e arroz.',
     path: 'lib/images/FRANGO8.png',
+    category: 'Saladas',
   ),
   Food(
     id: 9,
@@ -103,6 +161,7 @@ List<Food> foodsList = [
     price: 19.00,
     description: 'Frango grelhado com molho teriyaki e legumes.',
     path: 'lib/images/FRANGO9.png',
+    category: 'Saladas',
   ),
   Food(
     id: 10,
@@ -110,6 +169,7 @@ List<Food> foodsList = [
     price: 3.50,
     description: 'Sopa quente com pedaços de frango e legumes.',
     path: 'lib/images/FRANGO10.png',
+    category: 'Saladas',
   ),
   Food(
     id: 11,
@@ -117,6 +177,7 @@ List<Food> foodsList = [
     price: 3.50,
     description: 'Sopa quente com uma mistura de legumes frescos.',
     path: 'lib/images/FRANGO2.png',
+    category: 'Massas',
   ),
   Food(
     id: 12,
@@ -124,6 +185,7 @@ List<Food> foodsList = [
     price: 3.50,
     description: 'Caldo nutritivo com pedaços de frango e ervas.',
     path: 'lib/images/FRANGO9.png',
+    category: 'Massas',
   ),
   Food(
     id: 13,
@@ -131,6 +193,7 @@ List<Food> foodsList = [
     price: 3.50,
     description: 'Sopa cremosa de milho com temperos suaves.',
     path: 'lib/images/FRANGO3.png',
+    category: 'Massas',
   ),
   Food(
     id: 14,
@@ -138,6 +201,7 @@ List<Food> foodsList = [
     price: 3.50,
     description: 'Creme de abóbora com um toque de gengibre.',
     path: 'lib/images/FRANGO7.png',
+    category: 'Massas',
   ),
   Food(
     id: 15,
@@ -145,6 +209,7 @@ List<Food> foodsList = [
     price: 3.50,
     description: 'Sopa de tomate com manjericão e alho.',
     path: 'lib/images/FRANGO4.png',
+    category: 'Massas',
   ),
   Food(
     id: 16,
@@ -152,6 +217,7 @@ List<Food> foodsList = [
     price: 3.50,
     description: 'Canja de galinha com arroz e cenoura.',
     path: 'lib/images/FRANGO1.png',
+    category: 'Massas',
   ),
   Food(
     id: 17,
@@ -159,6 +225,7 @@ List<Food> foodsList = [
     price: 3.50,
     description: 'Caldo verde com couve e pedaços de linguiça.',
     path: 'lib/images/FRANGO5.png',
+    category: 'Massas',
   ),
   Food(
     id: 18,
@@ -166,6 +233,7 @@ List<Food> foodsList = [
     price: 3.50,
     description: 'Sopa de batata com alho-poró e bacon.',
     path: 'lib/images/FRANGO8.png',
+    category: 'Sopas',
   ),
   Food(
     id: 19,
@@ -173,6 +241,7 @@ List<Food> foodsList = [
     price: 3.50,
     description: 'Caldo de feijão preto com pedaços de carne.',
     path: 'lib/images/FRANGO6.png',
+    category: 'Sopas',
   ),
   Food(
     id: 20,
@@ -180,6 +249,7 @@ List<Food> foodsList = [
     price: 3.50,
     description: 'Creme de ervilha com hortelã e limão.',
     path: 'lib/images/FRANGO10.png',
+    category: 'Sopas',
   ),
   Food(
     id: 21,
@@ -187,6 +257,7 @@ List<Food> foodsList = [
     price: 3.50,
     description: 'Sopa de cebola gratinada com queijo.',
     path: 'lib/images/FRANGO2.png',
+    category: 'Sopas',
   ),
   Food(
     id: 22,
@@ -194,6 +265,7 @@ List<Food> foodsList = [
     price: 3.50,
     description: 'Sopa de lentilha com cenoura e batata-doce.',
     path: 'lib/images/FRANGO9.png',
+    category: 'Petiscos',
   ),
   Food(
     id: 23,
@@ -201,6 +273,7 @@ List<Food> foodsList = [
     price: 3.50,
     description: 'Sopa de abóbora com leite de coco e curry.',
     path: 'lib/images/FRANGO3.png',
+    category: 'Petiscos',
   ),
   Food(
     id: 24,
@@ -208,6 +281,7 @@ List<Food> foodsList = [
     price: 3.50,
     description: 'Caldo de mandioquinha com carne seca.',
     path: 'lib/images/FRANGO7.png',
+    category: 'Petiscos',
   ),
   Food(
     id: 25,
@@ -215,6 +289,7 @@ List<Food> foodsList = [
     price: 3.50,
     description: 'Sopa de abobrinha com hortelã e iogurte.',
     path: 'lib/images/FRANGO4.png',
+    category: 'Petiscos',
   ),
   Food(
     id: 26,
@@ -222,6 +297,7 @@ List<Food> foodsList = [
     price: 3.50,
     description: 'Sopa de espinafre com alho e nozes.',
     path: 'lib/images/FRANGO1.png',
+    category: 'Petiscos',
   ),
   Food(
     id: 27,
@@ -229,6 +305,7 @@ List<Food> foodsList = [
     price: 3.50,
     description: 'Caldo de cenoura com gengibre e mel.',
     path: 'lib/images/FRANGO5.png',
+    category: 'Petiscos',
   ),
   Food(
     id: 28,
@@ -236,6 +313,7 @@ List<Food> foodsList = [
     price: 3.50,
     description: 'Creme de batata-doce com coco ralado.',
     path: 'lib/images/FRANGO8.png',
+    category: 'Bebidas',
   ),
   Food(
     id: 29,
@@ -243,6 +321,7 @@ List<Food> foodsList = [
     price: 3.50,
     description: 'Sopa de ervilha com presunto e hortelã.',
     path: 'lib/images/FRANGO6.png',
+    category: 'Bebidas',
   ),
   Food(
     id: 30,
@@ -250,6 +329,7 @@ List<Food> foodsList = [
     price: 3.50,
     description: 'Caldo de peixe com mariscos e coentro.',
     path: 'lib/images/FRANGO10.png',
+    category: 'Bebidas',
   ),
   Food(
     id: 31,
@@ -257,6 +337,7 @@ List<Food> foodsList = [
     price: 3.50,
     description: 'Sopa de beterraba com iogurte natural.',
     path: 'lib/images/FRANGO2.png',
+    category: 'Bebidas',
   ),
   Food(
     id: 32,
@@ -264,6 +345,7 @@ List<Food> foodsList = [
     price: 3.50,
     description: 'Sopa de grão-de-bico com espinafre.',
     path: 'lib/images/FRANGO9.png',
+    category: 'Bebidas',
   ),
   Food(
     id: 33,
@@ -271,6 +353,7 @@ List<Food> foodsList = [
     price: 3.50,
     description: 'Sopa de inhame com alho e gengibre.',
     path: 'lib/images/FRANGO3.png',
+    category: 'Bebidas',
   ),
   Food(
     id: 34,
@@ -278,6 +361,7 @@ List<Food> foodsList = [
     price: 3.50,
     description: 'Caldo de camarão com leite de coco e dendê.',
     path: 'lib/images/FRANGO7.png',
+    category: 'Bebidas',
   ),
   Food(
     id: 35,
@@ -285,6 +369,7 @@ List<Food> foodsList = [
     price: 3.50,
     description: 'Sopa de nabo com frango desfiado.',
     path: 'lib/images/FRANGO4.png',
+    category: 'Assados',
   ),
   Food(
     id: 36,
@@ -292,6 +377,7 @@ List<Food> foodsList = [
     price: 3.50,
     description: 'Creme de palmito com queijo parmesão.',
     path: 'lib/images/FRANGO1.png',
+    category: 'Petiscos',
   ),
   Food(
     id: 37,
@@ -299,6 +385,7 @@ List<Food> foodsList = [
     price: 3.50,
     description: 'Sopa de feijão branco com linguiça.',
     path: 'lib/images/FRANGO5.png',
+    category: 'Sopas',
   ),
   Food(
     id: 38,
@@ -306,6 +393,7 @@ List<Food> foodsList = [
     price: 3.50,
     description: 'Sopa de macarrão com legumes variados.',
     path: 'lib/images/FRANGO8.png',
+    category: 'Saladas',
   ),
   Food(
     id: 39,
@@ -313,6 +401,7 @@ List<Food> foodsList = [
     price: 3.50,
     description: 'Caldo de galinha com temperos caseiros.',
     path: 'lib/images/FRANGO6.png',
+    category: 'Bebidas',
   ),
   Food(
     id: 40,
@@ -320,5 +409,6 @@ List<Food> foodsList = [
     price: 3.50,
     description: 'Creme de espinafre com queijo ralado.',
     path: 'lib/images/FRANGO10.png',
+    category: 'Assados',
   ),
 ];

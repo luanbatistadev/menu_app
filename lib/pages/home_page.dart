@@ -3,8 +3,9 @@ import 'package:menu_app/components/app_bar.dart';
 import 'package:menu_app/components/carousel_slider_home.dart';
 import 'package:menu_app/components/grid_view.dart';
 import 'package:menu_app/components/list_view.dart';
-import 'package:menu_app/models/filter_tabview.dart';
+import 'package:menu_app/components/tab_bar_view_home.dart';
 import 'package:menu_app/loading/loading_home_page.dart';
+import 'package:menu_app/models/filter_tabview.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -88,28 +89,11 @@ class _HomePageState extends State<HomePage>
                     ),
                   ),
                 ],
-                body: TabBarView(
-                  controller: _tabController,
-                  clipBehavior: Clip.hardEdge,
-                  children: List.generate(
-                    6,
-                    (index) {
-                      if (screenSize < 480) {
-                        return ListViewChicken(
-                          filter: '',
-                        );
-                      } else {
-                        return GridViewChicken(
-                          filter: '',
-                        );
-                      }
-                    },
-                  ),
-                ),
+                body: TabBarViewHome(screenSize: screenSize, tabController: _tabController,),
               ),
             ),
           );
-  }
+  }  
 
   @override
   void dispose() {
