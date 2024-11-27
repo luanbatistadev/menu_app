@@ -41,18 +41,18 @@ dependencies:
   shimmer: ^3.0.0
   hive: ^2.2.3
   hive_flutter: ^1.1.0
-  flutter_native_splash: ^2.4.1 
+  flutter_native_splash: ^2.4.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_launcher_icons: "^0.13.1"  
+  flutter_launcher_icons: "^0.13.1"
 
 flutter_launcher_icons:
   android: true
   ios: true
   image_path: "assets/icon/icon.png"
-  min_sdk_android: 23 
+  min_sdk_android: 23
   background_color: "#1B55F5"
   theme_color: "1B55F5"
   remove_alpha_ios: true
